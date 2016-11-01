@@ -1,5 +1,5 @@
 ifndef GO
-GO:=go
+export GO:=go
 endif
 
 DIR_GOMAKE:=$(dir $(lastword $(MAKEFILE_LIST)))

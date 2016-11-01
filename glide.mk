@@ -12,6 +12,5 @@ GLIDE_ARCH:=linux-amd64
 GLIDE_OPT_INSTALL:=--cache --cache-gopath
 
 $(GLIDE): | $(GOPATH)
+	echo Installing $@
 	curl -sL https://github.com/Masterminds/glide/releases/download/$(GLIDE_VERSION)/glide-$(GLIDE_VERSION)-$(GLIDE_ARCH).tar.gz | tar -xz --to-stdout -f- $(GLIDE_ARCH)/glide > $@
-
-

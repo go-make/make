@@ -8,5 +8,5 @@ $(CMD_LINKFLAGS): | $(GOPATH)
 #      $(GO) build -ldflags='$(call VERSION_LDFLAGS,github.com/example/myrepo)'
 #
 define VERSION_LDFLAGS
-$$(shell $(CMD_LINKFLAGS) -pkg=$(GOPATH)/src/$(1))
+$(shell $(CMD_LINKFLAGS) -pkg=$(GOPATH)/src/$(1))
 endef
