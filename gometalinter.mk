@@ -21,7 +21,6 @@ GOMETALINTER_OPT:=\
 	--exclude='should have comment or be unexported' \
 	--exclude='should have comment \(or a comment on this block\) or be unexported' \
 	--exclude='error return value not checked \(defer ' \
-	--enable-all \
 	--deadline=$(GOMETALINTER_DEADLINE) \
 	--line-length=$(GOMETALINTER_LINELENGTH) \
 	--cyclo-over=$(GOMETALINTER_CYCLO)
