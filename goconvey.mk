@@ -1,3 +1,5 @@
+#  See https://github.com/boyvinall/gomake/goconvey.md
+
 export GOCONVEY:=$(GOPATH)/bin/goconvey
 
 .PHONY: goconvey
