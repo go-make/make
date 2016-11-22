@@ -8,9 +8,19 @@ export GLIDE:=$(GOPATH)/bin/glide
 #
 GLIDE_VERSION:=v0.11.1
 
+OS:=$(shell uname -s)
+ifeq ("$(OS)","Darwin")
+GLIDE_ARCH:=darwin-amd64
+else
 GLIDE_ARCH:=linux-amd64
+endif
+
 GLIDE_OPT_INSTALL:=--cache --cache-gopath
 
 $(GLIDE): | $(GOPATH)
-	echo Installing $@
+	@echo Installing $@
 	curl -sL https://github.com/Masterminds/glide/releases/download/$(GLIDE_VERSION)/glide-$(GLIDE_VERSION)-$(GLIDE_ARCH).tar.gz | tar -xz --to-stdout -f- $(GLIDE_ARCH)/glide > $@
+	chmod +x $@
+
+debug::
+	@echo OS $(OS)
