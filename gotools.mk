@@ -7,4 +7,5 @@ include $(DIR_GOMAKE)/version.mk
 include $(DIR_GOMAKE)/gometalinter.mk
 include $(DIR_GOMAKE)/gopherjs.mk
 include $(DIR_GOMAKE)/gocov.mk
+include $(DIR_GOMAKE)/goconvey.mk
 
