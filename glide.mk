@@ -17,10 +17,7 @@ endif
 
 GLIDE_OPT_INSTALL:=--cache --cache-gopath
 
-$(GLIDE): | $(GOPATH)
-	@echo Installing $@
+$(GLIDE): | $(GOPATH)/bin
+	$(call PROMPT,Installing $@)
 	curl -sL https://github.com/Masterminds/glide/releases/download/$(GLIDE_VERSION)/glide-$(GLIDE_VERSION)-$(GLIDE_ARCH).tar.gz | tar -xz --to-stdout -f- $(GLIDE_ARCH)/glide > $@
 	chmod +x $@
-
-debug::
-	@echo OS $(OS)

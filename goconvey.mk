@@ -7,4 +7,5 @@ goconvey: $(GOCONVEY)
 	nohup $(GOCONVEY) > goconvey.out &
 
 $(GOCONVEY):
+	$(call PROMPT,Installing $@)
 	$(GO) get -u github.com/smartystreets/goconvey

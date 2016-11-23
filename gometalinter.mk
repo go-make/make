@@ -1,6 +1,7 @@
 export GOMETALINTER:=$(GOPATH)/bin/gometalinter
 
 $(GOMETALINTER): | $(GOPATH)
+	$(call PROMPT,Installing $@)
 	$(GO) get github.com/alecthomas/gometalinter
 	$(GOMETALINTER) --install
 

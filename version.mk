@@ -1,5 +1,6 @@
 CMD_LINKFLAGS:=$(GOPATH)/bin/linkflags
 $(CMD_LINKFLAGS): | $(GOPATH)
+	$(call PROMPT,Installing $@)
 	$(GO) get github.com/gravitational/version/cmd/linkflags
 
 #  Use this define something like:

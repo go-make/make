@@ -19,6 +19,10 @@ define PROMPT
 	@echo
 endef
 
+$(GOPATH)/bin:
+	$(call PROMPT,mkdir $@)
+	mkdir -p $@
+
 # this allows you to run
 #
 #     $ eval `make gopath`
