@@ -49,3 +49,9 @@ coverage-short: $(GOCOV) $(GOCOV_HTML)
 	$(call PROMPT,$@)
 	$(GOCOV) test -v -short $$($(GLIDE) nv) > coverage.json
 	$(GOCOV_HTML) coverage.json > coverage.html
+
+.PHONY: clean
+clean::
+
+.PHONY: clobber
+clobber:: clean
