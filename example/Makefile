@@ -10,7 +10,7 @@ fast: build coverage-short lint-fast
 all: build coverage lint-full
 
 # This assumes that this makefile is copied into something
-# like github.com/example/package
+# like $GOPATH/src/github.com/example/package
 export GOPATH:=$(realpath $(shell pwd)/../../../..)
 
 # probably not needed

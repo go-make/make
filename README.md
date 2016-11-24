@@ -123,7 +123,7 @@ golang in the browser #FTW. See [gopherjs](https://github.com/gopherjs/gopherjs)
 | Variable             | Description                                                                     |
 |----------------------|---------------------------------------------------------------------------------|
 | `$(GOPHERJS)`        | Refers to the `gopherjs` executable. You can depend on this to get gopherjs installed |
-| `$(TEMPLE)`          | Refers to the `temple` executable (used to enable go-templates for client-side markup generation. You can depend on this to get temple installed |
+| `$(TEMPLE)`          | Refers to the `temple` executable (used to enable go-templates for client-side markup generation). You can depend on this to get temple installed |
 
 ## gravitational/version
 Allows you to print the git tag/hash of the repo when your app runs. See
@@ -135,3 +135,6 @@ Use this define something like:
         $(GO) build -ldflags='$(call VERSION_LDFLAGS_VENDOR,github.com/example/myrepo)'
 
 NB, this assumes you've vendored this package. If not, then omit the `_VENDOR` in the line above.
+
+## docker
+Also included are some rules to simplify working with docker containers. Further docs to follow, or see [docker.mk](docker.mk)
