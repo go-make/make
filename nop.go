@@ -1,2 +1,3 @@
 // A no-op package that only serves to enable you to 'go get' this repo.
-package nop
+// See https://github.com/go-make/make for more info.
+package make

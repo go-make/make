@@ -4,7 +4,7 @@ include $(DIR_GOMAKE)/gotools.mk
 .PHONY: build
 build: vendor
 	$(call PROMPT,$@)
-	go install $$($(GLIDE) nv)
+	$(GO) install $$($(GLIDE) nv)
 
 vendor: $(GLIDE)
 	$(call PROMPT,$@)
@@ -30,12 +30,12 @@ lint-fast: $(GOMETALINTER)
 test: test-full
 test-full: coverage
 	$(call PROMPT,$@)
-	go test -v -race $$($(GLIDE) nv)
+	$(GO) test -v -race $$($(GLIDE) nv)
 
 .PHONY: test-short
 test-short: coverage-short
 	$(call PROMPT,$@)
-	go test -v -short -cover $$($(GLIDE) nv)
+	$(GO) test -v -short -cover $$($(GLIDE) nv)
 
 .PHONY: coverage coverage-full
 coverage: coverage-full
