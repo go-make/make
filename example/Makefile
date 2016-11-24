@@ -12,14 +12,12 @@ GOMETALINTER_DEADLINE:=300s
 GOMETALINTER_CYCLO:=25
 
 #
-#  Note that this references gopkg.in/make.v0
-#  which always equates to the master branch.
-#  To make sure future updates don't break your
-#  build, you should lock this to the current
-#  version.  See http://gopkg.in for more info,
-#  and https://gopkg.in/make.v0 for a list of
-#  versions.
+#  Note that this references the initial release,
+#  which may not be current.
 #
--include $(GOPATH)/src/gopkg.in/make.v0/batteries.mk
-$(GOPATH)/src/gopkg.in/make.v0/batteries.mk:
-	go get gopkg.in/make.v0
+#  See https://gopkg.in/make.v1 for a list of
+#  versions and http://gopkg.in for more info.
+#
+-include $(GOPATH)/src/gopkg.in/make.v1/batteries.mk
+$(GOPATH)/src/gopkg.in/make.v1/batteries.mk:
+	go get gopkg.in/make.v1
