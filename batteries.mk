@@ -8,7 +8,7 @@ build: vendor
 
 vendor: $(GLIDE) glide.lock
 	$(call PROMPT,$@)
-	$(GLIDE) install
+	$(GLIDE) install $(GLIDE_OPT_INSTALL)
 	touch $@
 
 .PHONY: lint
