@@ -20,8 +20,9 @@ ifndef DISABLE_DOCKER
 
 ifndef IMAGE_VERSION
 GIT_TAG:=$(shell git describe --tags 2> /dev/null)
-ifneq ("$(GIT_TAG)_","_")
-IMAGE_VERSION:=$(GIT_TAG)
+GIT_TAG_STRIPPED:=$(patsubst v%,%,$(GIT_TAG))
+ifneq ("$(GIT_TAG_STRIPPED)_","_")
+IMAGE_VERSION:=$(GIT_TAG_STRIPPED)
 else
 IMAGE_VERSION:=latest
 endif

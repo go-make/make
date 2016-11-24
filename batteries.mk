@@ -6,7 +6,7 @@ build: vendor
 	$(call PROMPT,$@)
 	$(GO) install $$($(GLIDE) nv)
 
-vendor: $(GLIDE)
+vendor: $(GLIDE) glide.lock
 	$(call PROMPT,$@)
 	$(GLIDE) install
 	touch $@

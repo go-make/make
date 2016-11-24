@@ -19,6 +19,9 @@ define PROMPT
 	@echo
 endef
 
+# for ldflags, see "go tool link -h"
+STRIP_DEBUG:=-s -w
+
 $(GOPATH)/bin:
 	$(call PROMPT,mkdir $@)
 	mkdir -p $@
