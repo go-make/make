@@ -82,15 +82,21 @@ clean::
 clobber:: clean
 	-docker rmi -f $(IMAGE_NAME) $(IMAGE_LATEST) 2> /dev/null
 
-TAR_FILE:=$(notdir $(IMAGE_NAME)).tar
+TAR_FILE:=$(notdir $(subst :,_,$(IMAGE_NAME))).tar
 
 .PHONY: docker-tar
 docker-tar:
 	docker save '$(IMAGE_NAME)' > $(TAR_FILE)
+	gzip $(TAR_FILE)
 
+#
+# Push both the versioned and the "latest" image. They might be the same thing - but,
+# if so, then the second one will complete very quickly.
+#
 .PHONY: docker-push
 docker-push:
 	docker push $(IMAGE_NAME)
+	docker push $(IMAGE_LATEST)
 
 .PHONY: docker-run
 docker-run: clean
