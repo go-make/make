@@ -34,3 +34,12 @@ $(GOPATH)/bin:
 gopath:
 	@echo export GOPATH=$(GOPATH)
 	@echo export PATH=$(subst ::,:,$(GOPATH)/bin:$(subst $(GOPATH)/bin,,$(PATH)))
+
+
+OS:=$(shell uname -s)
+ifeq ("Linux","$(OS)")
+PREFIX:=/usr
+endif
+ifeq ("Darwin","$(OS)")
+PREFIX:=/usr/local
+endif
