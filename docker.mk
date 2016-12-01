@@ -68,6 +68,7 @@ endif
 
 .PHONY: image
 image:
+	$(call PROMPT,docker build)
 	rm -f $(TAR_FILE)
 	docker build --rm --force-rm -t $(IMAGE_LATEST) -f $(DOCKERFILE) .
 	[ "$(IMAGE_VERSION)" == "latest" ] || docker tag $(IMAGE_LATEST) $(IMAGE_NAME)
@@ -86,6 +87,7 @@ TAR_FILE:=$(notdir $(subst :,_,$(IMAGE_NAME))).tar
 
 .PHONY: docker-tar
 docker-tar:
+	$(call PROMPT,docker save)
 	docker save '$(IMAGE_NAME)' > $(TAR_FILE)
 	gzip $(TAR_FILE)
 
@@ -95,6 +97,7 @@ docker-tar:
 #
 .PHONY: docker-push
 docker-push:
+	$(call PROMPT,docker push)
 	docker push $(IMAGE_NAME)
 	docker push $(IMAGE_LATEST)
 
@@ -116,6 +119,9 @@ docker-entry:
 ca-bundle.crt:
 	curl -sL https://mkcert.org/generate/ > $@
 
+#
+#  Clean up general docker environment
+#
 .PHONY: docker-clean
 docker-clean:
 	docker images | grep '<none>' | gawk '{ print $$3 }' | xargs docker rmi
