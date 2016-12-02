@@ -28,14 +28,14 @@ lint-fast: $(GOMETALINTER)
 
 .PHONY: test test-full
 test: test-full
-test-full: coverage
+test-full:
 	$(call PROMPT,$@)
 	$(GO) test -v -race $$($(GLIDE) nv)
 
 .PHONY: test-short
-test-short: coverage-short
+test-short:
 	$(call PROMPT,$@)
-	$(GO) test -v -short -cover $$($(GLIDE) nv)
+	$(GO) test -v -short $$($(GLIDE) nv)
 
 .PHONY: coverage coverage-full
 coverage: coverage-full
