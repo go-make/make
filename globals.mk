@@ -2,6 +2,11 @@ ifndef GO
 export GO:=go
 endif
 
+INDENT_0:=""
+INDENT_1:="    "
+INDENT_2:="$(INDENT_1)$(INDENT_1)"
+INDENT:="$(or $(INDENT_$(MAKELEVEL)),"... $(INDENT_2)")"
+
 #
 # From any make rule, you can use this to let you know what's
 # running .. helps to give more understandable console output.
@@ -11,11 +16,11 @@ endif
 #
 define PROMPT
 	@echo
-	@echo "**********************************************************"
-	@echo "*"
-	@echo "*     $(1)"
-	@echo "*"
-	@echo "**********************************************************"
+	@echo "$(INDENT)**********************************************************"
+	@echo "$(INDENT)*"
+	@echo "$(INDENT)*   ($(notdir $(shell pwd)))    $(1)"
+	@echo "$(INDENT)*"
+	@echo "$(INDENT)**********************************************************"
 	@echo
 endef
 
