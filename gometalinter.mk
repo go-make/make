@@ -1,5 +1,6 @@
 export GOMETALINTER:=$(GOPATH)/bin/gometalinter
 
+# grab the gometalinter binary and install the actual linters
 $(GOMETALINTER): | $(GOPATH)
 	$(call PROMPT,Installing $@)
 	$(GO) get github.com/alecthomas/gometalinter

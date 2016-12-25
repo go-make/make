@@ -10,7 +10,7 @@
 #  - CONTAINER_NAME
 #  - IMAGE_VERSION
 #
-#  - SHELL
+#  - DOCKER_SHELL
 #  - BIND_VOLUMES
 #  - EXPOSE_PORTS
 #  - EXTRA_RUN_OPTS
@@ -28,8 +28,8 @@ IMAGE_VERSION:=latest
 endif
 endif
 
-ifndef SHELL
-SHELL:=/bin/bash
+ifndef DOCKER_SHELL
+DOCKER_SHELL:=/bin/bash
 endif
 
 ifndef CONTAINER_NAME
@@ -107,11 +107,11 @@ docker-run: clean
 
 .PHONY: docker-exec
 docker-exec:
-	docker exec -ti $(CONTAINER_NAME) $(SHELL)
+	docker exec -ti $(CONTAINER_NAME) $(DOCKER_SHELL)
 
 .PHONY: docker-entry
 docker-entry:
-	docker run -ti $(EXTRA_RUN_OPTS) $(EXPOSE_PORTS) $(BIND_VOLUMES) --entrypoint $(SHELL) $(IMAGE_NAME)
+	docker run -ti $(EXTRA_RUN_OPTS) $(EXPOSE_PORTS) $(BIND_VOLUMES) --entrypoint $(DOCKER_SHELL) $(IMAGE_NAME)
 
 # Useful with a scratch container. Use in Dockerfile as:
 #

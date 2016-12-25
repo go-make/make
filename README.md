@@ -32,11 +32,11 @@ $(GOPATH)/src/gopkg.in/make.v1/gotools.mk:
 
 It's definitely recommended that you use [autocomplete](docs/bash-completion.md) for make.
 
-These targets are supported by `batteries.mk`:
+These targets are supported by [`batteries.mk`](batteries.mk):
 
 | Target(s) | Description |
 |----|----|
-| `build` | Does a `go install` .. might get renamed to `install` |
+| `install` | Does a `go install` |
 | `vendor` | Uses glide to install versioned packages to your `vendor` directory |
 | `lint-fast`, `lint`, `lint-full` | Uses gometalinter to scan for possible nasties. The different targets just enable different options, either `--fast`, default, or `--enable-all` |
 | `test-short`, `test` | invokes `go test` on all local packages (it skips the vendored ones). `test-short` will pass the `--short` option in case you have some tests that take a long time to run (e.g. testing timeouts etc) |
@@ -59,19 +59,23 @@ and these are defined elsewhere, included above:
 
 # Supported Tools
 
-## glide
+Most of the tool support is quite simple, in many cases not much more than
+something to install the tool and a make variable to refer to the binary.
+Others are more fully featured.  Brief info follows below.
+
+## [glide](glide.mk)
 
 There are a plethora of package managers / vendoring tools for go at the moment.
 I currently use [glide](https://github.com/Masterminds/glide).
 
 Defined variables:
 
-| Variable             | Description                                                                     |
-|----------------------|---------------------------------------------------------------------------------|
+| Variable               | Description                                                                     |
+|------------------------|---------------------------------------------------------------------------------|
 | `$(GLIDE)`             | Refers to the `glide` executable. You can depend on this to get glide installed |
-| `$(GLIDE_OPT_INSTALL)` | options to be passed to `glide install`                                         |
+| `$(GLIDE_OPT_INSTALL)` | options to be passed to `glide install` (used to install package dependencies)  |
 
-## gometalinter
+## [gometalinter](gometalinter.mk)
 
 Superb wrapper to simplify running a whole bunch of linters on your code.
 See [gometalinter](https://github.com/alecthomas/gometalinter)
@@ -89,7 +93,7 @@ Defined variables:
 | `$(GOMETALINTER_DEADLINE)` | Sets the a linting time deadline (some linters can take quite a while...) |
 | `$(GOMETALINTER_CYCLO)` | Sets the [cyclomatic complexity](https://en.wikipedia.org/wiki/Cyclomatic_complexity) used during linting |
 
-## goconvey
+## [goconvey](goconvey.mk)
 
 The [goconvey](https://github.com/smartystreets/goconvey) makelet needs no other
 integration in your main makefile. Just run as follows (from your repo):
@@ -102,22 +106,34 @@ And it should install itself and fire up a webpage on http://127.0.0.1:8080.
 All your `go test` tests will be run on any code change, and you can
 get browser notifications when a test fails.
 
-## gocov
+## [gocov](gocov.mk)
 
 [gocov](https://github.com/axw/gocov) provides a nice wrapper around `go test`
 by simplifying the process of getting code coverage on a per-package basis.
 The [gocov-html](https://github.com/matm/gocov-html) generates a nice HTML file
 where you can easily see which source lines are not tested.
 
-## rice
+## [rice](rice.mk)
+
 Useful to embed directories of static files into binaries.
 See [go.rice](https://github.com/GeertJohan/go.rice)
 
+| Variable             | Description                                                                 |
+|----------------------|-----------------------------------------------------------------------------|
+| `$(RICE)`            | Refers to the `rice` executable. You can depend on this to get it installed |
+
+## [go-bindata](bindata.mk)
+
+Sometimes, or for gopherjs, you may want to include assets as part of the compilation
+process instead of using `rice` (above). In those cases, [go-bindata](https://github.com/jteeuwen/go-bindata)
+can be very useful.
+
 | Variable             | Description                                                                     |
 |----------------------|---------------------------------------------------------------------------------|
-| `$(RICE)`            | Refers to the `rice` executable. You can depend on this to get rice installed |
+| `$(GO_BINDATA)`      | Refers to the `go-bindata` executable. You can depend on this to get it installed |
 
-## gopherjs
+## [gopherjs](gopherjs.mk)
+
 golang in the browser #FTW. See [gopherjs](https://github.com/gopherjs/gopherjs)
 
 | Variable             | Description                                                                     |
@@ -125,7 +141,8 @@ golang in the browser #FTW. See [gopherjs](https://github.com/gopherjs/gopherjs)
 | `$(GOPHERJS)`        | Refers to the `gopherjs` executable. You can depend on this to get gopherjs installed |
 | `$(TEMPLE)`          | Refers to the `temple` executable (used to enable go-templates for client-side markup generation). You can depend on this to get temple installed |
 
-## gravitational/version
+## [gravitational/version](version.mk)
+
 Allows you to print the git tag/hash of the repo when your app runs. See
 [github.com/gravitational/version](https://github.com/gravitational/version) or the [godocs](https://godoc.org/github.com/gravitational/version#pkg-index) for more info.
 
@@ -136,5 +153,46 @@ Use this define something like:
 
 NB, this assumes you've vendored this package. If not, then omit the `_VENDOR` in the line above.
 
-## docker
-Also included are some rules to simplify working with docker containers. Further docs to follow, or see [docker.mk](docker.mk)
+## [docker](docker.mk)
+
+`docker.mk` is not included with the batteries, but provides some functions for working with docker containers:
+
+| Target(s) | Description |
+|----|----|
+| `image` | Builds a docker image, tagged with `$(IMAGE_NAME)` |
+| `docker-push` | Pushes to a docker registry |
+| `ca-bundle.crt` | Downloads a trusted list of certificates from [mkcert.org](https://mkcert.org/). Useful for a SCRATCH container that needs to contact HTTPS APIs etc. Use in Dockerfile as `ADD ca-bundle.crt /etc/pki/tls/certs/ca-bundle.crt` |
+| `docker-clean` | Cleans the myriad untagged docker images that build up during development |
+| `docker-tar` | Exports container image to a tar file - possibly useful for backing up |
+| `clobber::` | Removes previously-built images |
+
+Optionally-defined variables (only added if not already defined):
+
+| Variable        | Description | Default Value |
+|-----------------|-------------|------------------|
+| `$(DOCKERFILE)` | Used to build the image | `Dockerfile` |
+| `$(IMAGE_VERSION)` | Used to tag the image | (git tag) |
+| `$(CONTAINER_NAME)` | Used to tag the image | (directory name, with hypens removed) |
+| `$(DOCKER_SHELL)`  | Used for `docker-shell` and `docker-entry` above. |`/bin/bash` |
+
+Defined variables:
+
+| Variable        | Description | Default Value |
+|-----------------|-------------|------------------|
+| `$(IMAGE_NAME)` | Used to tag the image | `[$(DOCKER_REGISTRY)/][$(DOCKER_ORGANISATION)/]$(CONTAINER_NAME):$(IMAGE_VERSION)` |
+
+### Extras
+
+Some additional rules that can be useful to run a container with some default options:
+
+| Target(s) | Description |
+|----|----|
+| `docker-run` | Run container with `$(EXPOSE_PORTS)`, `$(BIND_VOLUMES)` and `$(EXTRA_RUN_OPTS)` |
+| `docker-shell` | Does `docker exec` with `$(DOCKER_SHELL)` in the container |
+| `docker-entry` | Runs a container but with entrypoint set to `$(DOCKER_SHELL)`, useful for debugging entry scripts |
+
+Optionally-defined variables (only added if not already defined):
+
+| Variable        | Description | Default Value |
+|-----------------|-------------|------------------|
+| `$(EXPOSE_PORTS)` | Option passed to `docker-run` and `docker-entry` | (maps all `EXPOSE` ports defined in the Dockerfile) |
