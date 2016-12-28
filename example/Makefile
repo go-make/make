@@ -6,8 +6,10 @@
 fast: build coverage-short lint-fast
 
 # Also define the "full fat" rule that does everything
-.PHONY: all
+.PHONY: all build
 all: build coverage lint-full
+
+build: install
 
 # This assumes that this makefile is copied into something
 # like $GOPATH/src/github.com/example/package
@@ -22,12 +24,9 @@ GOMETALINTER_DEADLINE:=300s
 GOMETALINTER_CYCLO:=25
 
 #
-#  Note that this references the initial release,
-#  which may not be current.
-#
-#  See https://gopkg.in/make.v1 for a list of
+#  See https://gopkg.in/make.v2 for a list of
 #  versions and http://gopkg.in for more info.
 #
--include $(GOPATH)/src/gopkg.in/make.v1/batteries.mk
-$(GOPATH)/src/gopkg.in/make.v1/batteries.mk:
-	go get gopkg.in/make.v1
+-include $(GOPATH)/src/gopkg.in/make.v2/batteries.mk
+$(GOPATH)/src/gopkg.in/make.v2/batteries.mk:
+	go get gopkg.in/make.v2

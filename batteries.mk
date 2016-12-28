@@ -6,7 +6,7 @@ install: vendor
 	$(call PROMPT,$@)
 	$(GO) install $$($(GLIDE) nv)
 
-vendor: $(GLIDE) glide.lock
+vendor glide.lock: $(GLIDE) glide.yaml
 	$(call PROMPT,$@)
 	$(GLIDE) install $(GLIDE_OPT_INSTALL)
 	touch $@

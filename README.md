@@ -1,17 +1,18 @@
 Makefile snippets (aka "makelets" :smile:) that I use for building golang projects.
 Everyone likes their own, I like these :bowtie:  Just wanted a public
 place to put them so I don't end up with scattered copies everywhere .. so this repo
-is kind of intended just for my benefit, but maybe you'll find a use too.
+is kind of intended just for my benefit, but maybe you'll find a use too.  If you'd
+like something else included, then fork away and send a PR if you like.
 
 For full batteries-included simplicity, use in a makefile as follows
 (make sure you replace the spaces with a tab).
 
-(See [gopkg.in/make.v1](https://gopkg.in/make.v1) for a list of versions)
+(See [gopkg.in/make.v2](https://gopkg.in/make.v2) for a list of versions)
 
 ````
--include $(GOPATH)/src/gopkg.in/make.v1/batteries.mk
-$(GOPATH)/src/gopkg.in/make.v1/batteries.mk:
-	go get gopkg.in/make.v1
+-include $(GOPATH)/src/gopkg.in/make.v2/batteries.mk
+$(GOPATH)/src/gopkg.in/make.v2/batteries.mk:
+	go get gopkg.in/make.v2
 ````
 
 Included in this repo is complete working [Makefile](example/Makefile), just
@@ -21,9 +22,9 @@ Take a look in that file to see the make rules included.  If you want more
 control over things then you can instead include just the tool definitions:
 
 ````
--include $(GOPATH)/src/gopkg.in/make.v1/gotools.mk
-$(GOPATH)/src/gopkg.in/make.v1/gotools.mk:
-	go get gopkg.in/make.v1
+-include $(GOPATH)/src/gopkg.in/make.v2/gotools.mk
+$(GOPATH)/src/gopkg.in/make.v2/gotools.mk:
+	go get gopkg.in/make.v2
 ````
 
 # Features

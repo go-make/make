@@ -15,7 +15,9 @@ else
 GLIDE_ARCH:=linux-amd64
 endif
 
+ifndef GLIDE_OPT_INSTALL
 GLIDE_OPT_INSTALL:=--cache --cache-gopath
+endif
 
 $(GLIDE): | $(GOPATH)/bin
 	$(call PROMPT,Installing $@)

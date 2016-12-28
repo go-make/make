@@ -1,0 +1,8 @@
+hash: 9ed0e2c762e437ecae7ea62932e639627eae89f9bf63a7160cec5fce331d858b
+updated: 2016-12-26T00:23:45.455401719Z
+imports:
+- name: github.com/jteeuwen/go-bindata
+  version: bbd0c6e271208dce66d8fda4bc536453cd27fc4a
+- name: github.com/urfave/cli
+  version: 0bdeddeeb0f650497d603c4ad7b20cfe685682f6
+testImports: []
