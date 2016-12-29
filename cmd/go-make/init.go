@@ -23,6 +23,9 @@ var fileTemplates = map[string]*fileDetails{
 	".vscode/settings.json": {
 		templatefile: "templates/vscode-settings.tpl",
 	},
+	"Makefile": {
+		templatefile: "templates/makefile.tpl",
+	},
 }
 
 type templateContext struct {
