@@ -11,7 +11,7 @@ vendor glide.lock: $(GLIDE) glide.yaml
 	$(GLIDE) install $(GLIDE_OPT_INSTALL)
 	touch $@
 
-glide.yaml: $(GLIDE)
+glide.yaml: | $(GLIDE)
 	$(GLIDE) init
 
 .PHONY: lint
