@@ -11,7 +11,17 @@ endif
 PROTOC_VERSION:=3.1.0
 PROTOC_ZIP:=protoc-$(PROTOC_VERSION)-$(PROTOC_ARCH).zip
 
-$(PROTOC): | $(PROTOC_GEN_GO) $(GOPATH)/bin
+NET_CONTEXT:=$(GOPATH)/src/golang.org/x/net/context
+$(NET_CONTEXT):
+	$(call PROMPT,go get $@)
+	$(GO) get golang.org/x/net/context
+
+GRPC:=$(GOPATH)/src/google.golang.org/grpc
+$(GRPC): $(NET_CONTEXT)
+	$(call PROMPT,go get $@)
+	$(GO) get google.golang.org/grpc
+
+$(PROTOC): $(GPRC) | $(PROTOC_GEN_GO) $(GOPATH)/bin
 	$(call PROMPT,Downloading $@)
 	[ -f /tmp/$(PROTOC_ZIP) ] || (curl -sL https://github.com/google/protobuf/releases/download/v$(PROTOC_VERSION)/$(PROTOC_ZIP) > /tmp/$(PROTOC_ZIP))
 	unzip -j /tmp/$(PROTOC_ZIP) bin/protoc -d $(dir $@)

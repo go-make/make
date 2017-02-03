@@ -29,6 +29,9 @@ lint-fast: $(GOMETALINTER)
 	$(call PROMPT,$@)
 	$(GOMETALINTER) $(GOMETALINTER_OPT) --fast $$($(GLIDE) nv)
 
+# wish this wasn't necessary
+lint lint-fast lint-full: install
+
 .PHONY: test test-full
 test: test-full
 test-full:
@@ -55,6 +58,7 @@ coverage-short: $(GOCOV) $(GOCOV_HTML)
 
 .PHONY: clean
 clean::
+	rm -f coverage.html coverage.json
 
 .PHONY: clobber
 clobber:: clean
