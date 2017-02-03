@@ -7,12 +7,12 @@ like something else included, then fork away and send a PR if you like.
 For full batteries-included simplicity, use in a makefile as follows
 (make sure you replace the spaces with a tab).
 
-(See [gopkg.in/make.v2](https://gopkg.in/make.v2) for a list of versions)
+(See [gopkg.in/make.v3](https://gopkg.in/make.v3) for a list of versions)
 
 ````
--include $(GOPATH)/src/gopkg.in/make.v2/batteries.mk
-$(GOPATH)/src/gopkg.in/make.v2/batteries.mk:
-	go get gopkg.in/make.v2
+-include $(GOPATH)/src/gopkg.in/make.v3/batteries.mk
+$(GOPATH)/src/gopkg.in/make.v3/batteries.mk:
+	go get gopkg.in/make.v3
 ````
 
 Included in this repo is complete working [Makefile](example/Makefile), just
@@ -22,9 +22,9 @@ Take a look in that file to see the make rules included.  If you want more
 control over things then you can instead include just the tool definitions:
 
 ````
--include $(GOPATH)/src/gopkg.in/make.v2/gotools.mk
-$(GOPATH)/src/gopkg.in/make.v2/gotools.mk:
-	go get gopkg.in/make.v2
+-include $(GOPATH)/src/gopkg.in/make.v3/gotools.mk
+$(GOPATH)/src/gopkg.in/make.v3/gotools.mk:
+	go get gopkg.in/make.v3
 ````
 
 # Features
@@ -160,11 +160,11 @@ NB, this assumes you've vendored this package. If not, then omit the `_VENDOR` i
 
 | Target(s) | Description |
 |----|----|
-| `image` | Builds a docker image, tagged with `$(IMAGE_NAME)` |
+| `docker-build` | Builds a docker image, tagged with `$(IMAGE_NAME)` |
 | `docker-push` | Pushes to a docker registry |
-| `ca-bundle.crt` | Downloads a trusted list of certificates from [mkcert.org](https://mkcert.org/). Useful for a SCRATCH container that needs to contact HTTPS APIs etc. Use in Dockerfile as `ADD ca-bundle.crt /etc/pki/tls/certs/ca-bundle.crt` |
 | `docker-clean` | Cleans the myriad untagged docker images that build up during development |
 | `docker-tar` | Exports container image to a tar file - possibly useful for backing up |
+| `ca-bundle.crt` | Downloads a trusted list of certificates from [mkcert.org](https://mkcert.org/). Useful for a `SCRATCH` container that needs to contact HTTPS APIs etc. Use in Dockerfile as `ADD ca-bundle.crt /etc/pki/tls/certs/ca-bundle.crt` |
 | `clobber::` | Removes previously-built images |
 
 Optionally-defined variables (only added if not already defined):

@@ -1,4 +1,4 @@
-package: gopkg.in/make.v2/cmd/go-make
+package: gopkg.in/make.v3/cmd/go-make
 import:
 - package: github.com/urfave/cli
   version: ^1.19.1

@@ -34,7 +34,8 @@ endif
 
 ifndef CONTAINER_NAME
 DIR_NAME:=$(notdir $(realpath .))
-CONTAINER_NAME:=$(subst -,,$(DIR_NAME))
+#CONTAINER_NAME:=$(subst -,,$(DIR_NAME))
+CONTAINER_NAME:=$(DIR_NAME)
 endif
 
 #
@@ -66,9 +67,9 @@ ifndef BIND_VOLUMES
 BIND_VOLUMES:=
 endif
 
-.PHONY: image
-image:
-	$(call PROMPT,docker build)
+.PHONY: docker-build
+docker-build:
+	$(call PROMPT,$@)
 	rm -f $(TAR_FILE)
 	docker build --rm --force-rm -t $(IMAGE_LATEST) -f $(DOCKERFILE) .
 	[ "$(IMAGE_VERSION)" == "latest" ] || docker tag $(IMAGE_LATEST) $(IMAGE_NAME)

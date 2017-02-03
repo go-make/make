@@ -24,9 +24,9 @@ GOMETALINTER_DEADLINE:=300s
 GOMETALINTER_CYCLO:=25
 
 #
-#  See https://gopkg.in/make.v2 for a list of
+#  See https://gopkg.in/make.v3 for a list of
 #  versions and http://gopkg.in for more info.
 #
--include $(GOPATH)/src/gopkg.in/make.v2/batteries.mk
-$(GOPATH)/src/gopkg.in/make.v2/batteries.mk:
-	go get gopkg.in/make.v2
+-include $(GOPATH)/src/gopkg.in/make.v3/batteries.mk
+$(GOPATH)/src/gopkg.in/make.v3/batteries.mk:
+	go get gopkg.in/make.v3
