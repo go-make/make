@@ -1,3 +1,0 @@
-[submodule "cli"]
-	path = cmd/go-make/vendor/github.com/urfave/cli
-	url = https://github.com/urfave/cli.git
