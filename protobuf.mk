@@ -1,6 +1,14 @@
 export PROTOC:=$(GOPATH)/bin/protoc
 export PROTOC_GEN_GO:=$(GOPATH)/bin/protoc-gen-go
 
+# protoc needs protoc-gen-go to be on the PATH
+ifeq ($(filter $(GOPATH)/bin,$(PATH)),)
+export PATH:=$(PATH_GOPATHBIN)
+endif
+
+# pass this to --go_out to generate client/server hooks
+PROTOC_PARAMS_GRPC:=plugins=grpc
+
 OS:=$(shell uname -s)
 ifeq ("$(OS)","Darwin")
 PROTOC_ARCH:=osx-x86_64
@@ -32,4 +40,4 @@ $(PROTOC_GEN_GO):
 
 %.pb.go: %.proto
 	$(call PROMPT,Generating $@)
-	$(PROTOC) -I$(dir $<) $(PROTOC_FLAGS) $< --go_out=plugins=grpc:$(dir $@)
+	$(PROTOC) -I$(dir $<) $(PROTOC_FLAGS) $< --go_out=$(PROTOC_PARAMS):$(dir $@)

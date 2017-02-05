@@ -31,6 +31,8 @@ $(GOPATH)/bin:
 	$(call PROMPT,mkdir $@)
 	mkdir -p $@
 
+PATH_GOPATHBIN:=$(subst ::,:,$(GOPATH)/bin:$(subst $(GOPATH)/bin,,$(PATH)))
+
 # this allows you to run
 #
 #     $ eval `make gopath`
@@ -38,7 +40,7 @@ $(GOPATH)/bin:
 .PHONY: gopath
 gopath:
 	@echo export GOPATH=$(GOPATH)
-	@echo export PATH=$(subst ::,:,$(GOPATH)/bin:$(subst $(GOPATH)/bin,,$(PATH)))
+	@echo export PATH=$(PATH_GOPATHBIN)
 
 
 OS:=$(shell uname -s)

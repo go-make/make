@@ -22,7 +22,7 @@ ifndef GOMETALINTER_OPT
 
 # protobuf-generated code fails "go lint" with a couple of things...
 GOMETALINTER_OPT_PROTOBUF:=\
-	--exclude="don't use underscores in Go names; (func _[A-Za-z]+_[A-Za-z]+_Handler|var _[A-Za-z]+_serviceDesc) should be" \
+	--exclude="don't use underscores in Go names; (func|var|const|type|method) [^ ]+ should be" \
 	--exclude="context.Context should be the first parameter of a function"
 
 GOMETALINTER_OPT:=\
