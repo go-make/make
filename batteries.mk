@@ -2,7 +2,7 @@ DIR_GOMAKE:=$(dir $(lastword $(MAKEFILE_LIST)))
 include $(DIR_GOMAKE)/gotools.mk
 
 .PHONY: install
-install: vendor
+install:
 	$(call PROMPT,$@)
 	$(GO) install $$($(GLIDE) nv)
 
