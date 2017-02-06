@@ -22,8 +22,10 @@ ifndef GOMETALINTER_OPT
 
 # protobuf-generated code fails "go lint" with a couple of things...
 GOMETALINTER_OPT_PROTOBUF:=\
-	--exclude="don't use underscores in Go names; (func|var|const|type|method) [^ ]+ should be" \
-	--exclude="context.Context should be the first parameter of a function"
+	--exclude="don't use underscores in Go names; (func|var|const|type|method|struct field) [^ ]+ should be" \
+	--exclude="\.pb.go:[0-9]+:[0-9]+:warning: context.Context should be the first parameter of a function" \
+	--exclude="\.pb.go:[0-9]+:[0-9]+:warning: exported method [^ ]+ returns unexported type" \
+	--exclude="\.pb.go:[0-9]+::warning: Errors unhandled."
 
 GOMETALINTER_OPT:=\
 	--exclude='should have comment or be unexported' \
