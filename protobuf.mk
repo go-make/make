@@ -19,6 +19,11 @@ endif
 PROTOC_VERSION:=3.1.0
 PROTOC_ZIP:=protoc-$(PROTOC_VERSION)-$(PROTOC_ARCH).zip
 
+define CLEAN_GRPC
+	rm -rf vendor/golang.org/x/net/context vendor/google.golang.org/grpc
+endef
+
+
 NET_CONTEXT:=$(GOPATH)/src/golang.org/x/net/context
 $(NET_CONTEXT):
 	$(call PROMPT,go get $@)
