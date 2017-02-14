@@ -50,3 +50,12 @@ endif
 ifeq ("Darwin","$(OS)")
 PREFIX:=/usr/local
 endif
+
+#
+# These are currently used for running tests. You could
+# just unset the env var for the tests, but doing it like
+# this allows you to override from the commandline if you
+# want.
+#
+export GOHOSTOS:=$(shell $(GO) env GOHOSTOS)
+export GOHOSTARCH:=$(shell $(GO) env GOHOSTARCH)

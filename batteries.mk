@@ -36,29 +36,30 @@ lint lint-fast lint-full: install
 test: test-full
 test-full:
 	$(call PROMPT,$@)
-	$(GO) test -v -race $$($(GLIDE) nv)
+	GOOS=$(GOHOSTOS) GOARCH=$(GOHOSTARCH) $(GO) test -v -race $$($(GLIDE) nv)
 
 .PHONY: test-short
 test-short:
 	$(call PROMPT,$@)
-	$(GO) test -v -short $$($(GLIDE) nv)
+	GOOS=$(GOHOSTOS) GOARCH=$(GOHOSTARCH) $(GO) test -v -short $$($(GLIDE) nv)
 
 .PHONY: coverage coverage-full
 coverage: coverage-full
 coverage-full: $(GOCOV) $(GOCOV_HTML)
 	$(call PROMPT,$@)
-	$(GOCOV) test -v -race $$($(GLIDE) nv) > coverage.json
+	GOOS=$(GOHOSTOS) GOARCH=$(GOHOSTARCH) $(GOCOV) test -v -race $$($(GLIDE) nv) > coverage.json
 	$(GOCOV_HTML) coverage.json > coverage.html
 
 .PHONY: coverage-short
 coverage-short: $(GOCOV) $(GOCOV_HTML)
 	$(call PROMPT,$@)
-	$(GOCOV) test -v -short $$($(GLIDE) nv) > coverage.json
+	GOOS=$(GOHOSTOS) GOARCH=$(GOHOSTARCH) $(GOCOV) test -v -short $$($(GLIDE) nv) > coverage.json
 	$(GOCOV_HTML) coverage.json > coverage.html
 
 .PHONY: clean
 clean::
 	rm -f coverage.html coverage.json
+	$(GO) clean
 
 .PHONY: clobber
 clobber:: clean
