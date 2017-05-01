@@ -153,6 +153,21 @@ See [github.com/goadesign/goa](https://github.com/goadesign/goa)
 |----------------------|---------------------------------------------------------------------------------|
 | `$(GOAGEN)`      | Refers to the `goagen` executable. You can depend on this to get it installed |
 
+There are make targets defined for each goa generate command, see table below.  This can
+be useful as part of a make process to ensure things are always up-to-date.
+
+| Target(s) | Description |
+|-----------|-------------|
+| goagen-app | Runs the goagen "app" command |
+| goagen-bootstrap | Runs the goagen "bootstrap" command |
+| goagen-client | Runs the goagen "client" command |
+| goagen-controller | Runs the goagen "controller" command |
+| goagen-gen | Runs the goagen "gen" command |
+| goagen-js | Runs the goagen "js" command |
+| goagen-main | Runs the goagen "main" command |
+| goagen-schema | Runs the goagen "schema" command |
+| goagen-swagger | Runs the goagen "swagger" command |
+
 ## [gopherjs](gopherjs.mk)
 
 golang in the browser #FTW. See [gopherjs](https://github.com/gopherjs/gopherjs)
