@@ -70,6 +70,7 @@ Others are more fully featured.  Brief info follows below.
 - [gocov](#gocov)
 - [rice](#rice)
 - [go-bindata](#go-bindata)
+- [goa](#goa)
 - [gopherjs](#gopherjs)
 - [gravitational/version](#gravitationalversion)
 - [docker](#docker)
@@ -143,6 +144,14 @@ can be very useful.
 | Variable             | Description                                                                     |
 |----------------------|---------------------------------------------------------------------------------|
 | `$(GO_BINDATA)`      | Refers to the `go-bindata` executable. You can depend on this to get it installed |
+
+## [goa](goa.mk)
+
+See [github.com/goadesign/goa](https://github.com/goadesign/goa)
+
+| Variable             | Description                                                                     |
+|----------------------|---------------------------------------------------------------------------------|
+| `$(GOAGEN)`      | Refers to the `goagen` executable. You can depend on this to get it installed |
 
 ## [gopherjs](gopherjs.mk)
 

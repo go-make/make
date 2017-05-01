@@ -10,4 +10,5 @@ include $(DIR_GOMAKE)/gocov.mk
 include $(DIR_GOMAKE)/goconvey.mk
 include $(DIR_GOMAKE)/bindata.mk
 include $(DIR_GOMAKE)/protobuf.mk
+include $(DIR_GOMAKE)/goa.mk
 
