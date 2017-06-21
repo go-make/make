@@ -16,7 +16,7 @@ else
 PROTOC_ARCH:=linux-x86_64
 endif
 
-PROTOC_VERSION:=3.1.0
+PROTOC_VERSION:=3.3.0
 PROTOC_ZIP:=protoc-$(PROTOC_VERSION)-$(PROTOC_ARCH).zip
 
 define CLEAN_GRPC
@@ -42,6 +42,14 @@ $(PROTOC_GEN_GO):
 	$(call PROMPT,Installing $@)
 	$(GO) get github.com/golang/protobuf/protoc-gen-go
 
-%.pb.go: %.proto
+# you might want to override this if you use gogo
+PROTOC_GO_OUT?=--go_out=$(PROTOC_PARAMS):$(dir $@)
+
+%.pb.go: %.proto $(PROTOC)
 	$(call PROMPT,Generating $@)
-	$(PROTOC) -I$(dir $<) $(PROTOC_FLAGS) $< --go_out=$(PROTOC_PARAMS):$(dir $@)
+	$(PROTOC) -I$(dir $<) -I$(GOPATH)/src $(PROTOC_FLAGS) $< $(PROTOC_GO_OUT)
+
+define STRIP_GOGO
+grep -v gogo.proto $(1) | sed "s,\[(gogoproto.moretags).*\],,g"
+endef
+
