@@ -17,14 +17,17 @@ $(GRPC_CSHARP_TOOLS): $(PROTOC)
 
 %.pb.cs: %.proto
 	$(call PROMPT,Generating $@)
-	$(call STRIP_GOGO,$<) | $(PROTOC) \
-		-I$(dir $<) \
-		-I$(GOPATH)/src \
-		$(PROTOC_FLAGS) \
-		--csharp_out $(dir $<) \
-		--grpc_out $(dir $<) \
-		--proto_path=/dev \
-		/dev/stdin \
-		--plugin=protoc-gen-grpc=$(GOPATH)/bin/grpc_csharp_plugin
-	mv $(dir $<)/Stdin.cs $@
-	[ -f $(dir $<)/StdinGrpc.cs ] && mv $(dir $<)/StdinGrpc.cs $(<:.proto=)_grpc.pb.cs || true
+	T=$$(mktemp -d) bash -c ' \
+		$(call STRIP_GOGO,$<) > $$T/$(notdir $<) && \
+		$(PROTOC) \
+			--proto_path=$$T \
+			--csharp_opt=file_extension=.pb.cs \
+			-I$(dir $<) \
+			-I$(GOPATH)/src \
+			$(PROTOC_FLAGS) \
+			--csharp_out $(dir $<) \
+			--grpc_out $(dir $<) \
+			$$T/$(notdir $<) \
+			--plugin=protoc-gen-grpc=$(GOPATH)/bin/grpc_csharp_plugin ; \
+		rm -rf $$T \
+	'
