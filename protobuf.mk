@@ -43,7 +43,7 @@ $(PROTOC_GEN_GO):
 	$(GO) get github.com/golang/protobuf/protoc-gen-go
 
 # you might want to override this if you use gogo
-PROTOC_GO_OUT?=--go_out=$(PROTOC_PARAMS):$(dir $@)
+PROTOC_GO_OUT?=--go_out=$(PROTOC_PARAMS):$(GOPATH)/src
 
 %.pb.go: %.proto $(PROTOC)
 	$(call PROMPT,Generating $@)
