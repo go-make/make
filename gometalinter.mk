@@ -32,7 +32,8 @@ GOMETALINTER_OPT_PROTOBUF=\
 	--exclude="\.pb.go:[0-9]+:[0-9]+:warning: context.Context should be the first parameter of a function" \
 	--exclude="\.pb.go:[0-9]+:[0-9]+:warning: exported method [^ ]+ returns unexported type" \
 	--exclude="\.pb.go:[0-9]+:[0-9]+:warning: should replace [^ ]+ \+= 1 with [^ ]+\+\+" \
-	--exclude="\.pb.go:[0-9]+::warning: Errors unhandled."
+	--exclude="\.pb.go:[0-9]+::warning: Errors unhandled." \
+	--exclude="\.pb.go:[0-9]+::warning: cyclomatic complexity"
 
 GOMETALINTER_OPT_GOA=\
 	--exclude="github.com/goadesign/goa/design. imported but not used"
