@@ -21,7 +21,6 @@ $(GRPC_CSHARP_TOOLS): $(PROTOC)
 		$(call STRIP_GOGO,$<) > $$T/$(notdir $<) && \
 		$(PROTOC) \
 			--proto_path=$$T \
-			--csharp_opt=file_extension=.pb.cs \
 			-I$(dir $<) \
 			-I$(GOPATH)/src \
 			$(PROTOC_FLAGS) \
