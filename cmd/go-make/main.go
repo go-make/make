@@ -19,6 +19,7 @@ func main() {
 	app.Usage = "Create Makefile scaffolding for golang projects"
 	app.Commands = []cli.Command{
 		commandInit,
+		commandManifest,
 	}
 
 	err := app.Run(os.Args)

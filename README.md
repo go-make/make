@@ -4,30 +4,16 @@ place to put them so I don't end up with scattered copies everywhere .. so this 
 is kind of intended just for my benefit, but maybe you'll find a use too.  If you'd
 like something else included, then fork away and send a PR if you like.
 
-For full batteries-included simplicity, use in a makefile as follows
-(make sure you replace the spaces with a tab).
+There are a few different example projects which demonstrate usage.  I didn't include
+them in here for two reasons: (1) so that you can easily see what's needed in your
+own projects, (2) to keep this repo slightly simpler.  The examples:
 
-(See [gopkg.in/make.v4](https://gopkg.in/make.v4) for a list of versions)
+- [github.com/go-make/example-simple](https://github.com/go-make/example-simple)
 
-````
-GOMAKE:=gopkg.in/make.v4
--include $(GOPATH)/src/$(GOMAKE)/batteries.mk
-$(GOPATH)/src/$(GOMAKE)/%:
-	go get $(GOMAKE)
-````
+# Scaffolding generation
 
-Included in this repo is complete working [Makefile](example/Makefile), just
-drop that file in the root of your go project.
-
-Take a look in that file to see the make rules included.  If you want more
-control over things then you can instead include just the tool definitions:
-
-````
-GOMAKE:=gopkg.in/make.v4
--include $(GOPATH)/src/$(GOMAKE)/tools.mk
-$(GOPATH)/src/$(GOMAKE)/%:
-	go get $(GOMAKE)
-````
+Along with the makelets, this repo also contains a [simple CLI tool](cmd/go-make)
+to generate various scaffolding.  Further info on the CLI tool is available there.
 
 # Features
 

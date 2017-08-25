@@ -4,8 +4,6 @@
 #
 #------------------------------------------------
 
-# This assumes that this makefile is copied into something
-# like $GOPATH/src/github.com/example/package
 export GOPATH:=$(realpath $(shell pwd)/{{.GoPathRel}})
 
 #------------------------------------------------

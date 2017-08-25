@@ -91,12 +91,17 @@ func createFile(c *cli.Context, outfile string, f *fileDetails) {
 }
 
 var commandInit = cli.Command{
-	Name:    "init",
-	Aliases: []string{"i"},
-	Usage:   "initialise scaffolding for this project",
+	Name:      "init",
+	Aliases:   []string{"i"},
+	Usage:     "initialise scaffolding for this project",
+	UsageText: "go-make init [command options] [files...]",
+	Description: `[files...] is a list of one/more files to generate. If not specified,
+   all known files will be generated. By default, no existing files will
+   be overwritten - but you can force generation of files with -f`,
 	Flags: []cli.Flag{
 		cli.BoolFlag{
-			Name: "force, f",
+			Name:  "force, f",
+			Usage: "overwrites existing files - use with care!",
 		},
 	},
 	Action: func(c *cli.Context) error {
