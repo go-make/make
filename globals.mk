@@ -1,6 +1,5 @@
-ifndef GO
-export GO:=go
-endif
+export GO?=go
+export GOFMT?=gofmt
 
 INDENT_0:=""
 INDENT_1:="    "
@@ -14,6 +13,7 @@ INDENT:="$(or $(INDENT_$(MAKELEVEL)),"... $(INDENT_2)")"
 # foo:
 #     $(call PROMPT,$@)
 #
+ifndef PROMPT
 define PROMPT
 	@echo
 	@echo "$(INDENT)**********************************************************"
@@ -23,6 +23,7 @@ define PROMPT
 	@echo "$(INDENT)**********************************************************"
 	@echo
 endef
+endif
 
 # for ldflags, see "go tool link -h"
 STRIP_DEBUG:=-s -w
@@ -44,12 +45,6 @@ gopath:
 
 
 OS:=$(shell uname -s)
-ifeq ("Linux","$(OS)")
-PREFIX:=/usr
-endif
-ifeq ("Darwin","$(OS)")
-PREFIX:=/usr/local
-endif
 
 #
 # These are currently used for running tests. You could

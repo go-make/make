@@ -55,7 +55,7 @@ func createFile(c *cli.Context, outfile string, f *fileDetails) {
 	if _, err := os.Stat(outfile); err == nil {
 		if !c.Bool("force") {
 			// file exists, don't overwrite
-			fmt.Fprintln(os.Stderr, outfile, "exists, not overwriting")
+			fmt.Fprintln(os.Stderr, outfile, " - already exists, not overwriting")
 			return
 		}
 	}
@@ -78,6 +78,7 @@ func createFile(c *cli.Context, outfile string, f *fileDetails) {
 		die(err)
 	}
 
+	fmt.Fprintln(os.Stdout, outfile, " - creating")
 	w, err := os.Create(outfile)
 	if err != nil {
 		die(err)

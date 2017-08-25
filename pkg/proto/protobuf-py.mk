@@ -1,5 +1,5 @@
 # support for accessing microservices from python
-# you have to manually include this, it's not part of the default gotools.mk
+# you have to manually include this, it's not part of the default tools.mk
 
 PIP:=$(shell which pip)
 ifeq ($(PIP),)

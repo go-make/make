@@ -1,5 +1,5 @@
 # support for accessing your go microservices from C# :)
-# you have to manually include this, it's not part of the default gotools.mk
+# you have to manually include this, it's not part of the default tools.mk
 
 GRPC_CSHARP_PLUGIN_Darwin_x86_64:=tools/macosx_x64/grpc_csharp_plugin
 GRPC_CSHARP_PLUGIN_Linux_x86_64:=tools/linux_x64/grpc_csharp_plugin

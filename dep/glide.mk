@@ -1,4 +1,5 @@
 export GLIDE:=$(GOPATH)/bin/glide
+NO_VENDOR?=$(shell $(GLIDE) nv)
 
 #
 #  Glide v0.12 no longer creates git repo under the vendor directory, which
@@ -23,3 +24,12 @@ $(GLIDE): | $(GOPATH)/bin
 	$(call PROMPT,Installing $@)
 	curl -sL https://github.com/Masterminds/glide/releases/download/$(GLIDE_VERSION)/glide-$(GLIDE_VERSION)-$(GLIDE_ARCH).tar.gz | tar -xz --to-stdout -f- $(GLIDE_ARCH)/glide > $@
 	chmod +x $@
+
+vendor glide.lock: $(GLIDE) glide.yaml
+	$(call PROMPT,$@)
+	$(GLIDE) install $(GLIDE_OPT_INSTALL)
+	touch $@
+
+glide.yaml: | $(GLIDE)
+	$(GLIDE) init
+

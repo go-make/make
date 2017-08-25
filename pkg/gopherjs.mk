@@ -12,9 +12,15 @@ $(TEMPLE):
 #
 # Some generic JS tools below, not specifically gopherjs but useful in that context
 #
+ifeq ("Linux","$(OS)")
+JS_PREFIX:=/usr
+endif
+ifeq ("Darwin","$(OS)")
+JS_PREFIX:=/usr/local
+endif
 
 ifndef YARN
-YARN:=$(PREFIX)/bin/yarn
+YARN:=$(JS_PREFIX)/bin/yarn
 endif
 
 ifndef GULP
@@ -22,7 +28,7 @@ GULP:=./node_modules/gulp/bin/gulp.js
 endif
 
 ifndef NPM
-NPM:=$(PREFIX)/bin/npm
+NPM:=$(JS_PREFIX)/bin/npm
 endif
 
 # either/both of these targets can be generated from yarn
