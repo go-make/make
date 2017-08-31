@@ -28,9 +28,12 @@ all: build coverage lint-full
 #  versions and http://gopkg.in for more info.
 #
 GOMAKE:=gopkg.in/make.v4
+{{- if .Dep}}
+GOMAKE_VENDOR:=dep
+{{- end}}
 -include $(GOPATH)/src/$(GOMAKE)/batteries.mk
 $(GOPATH)/src/$(GOMAKE)/%:
-	$(GO) get $(GOMAKE)/...
+	go get $(GOMAKE)/...
 
 #------------------------------------------------
 #
@@ -44,5 +47,15 @@ $(GOPATH)/src/$(GOMAKE)/%:
 .PHONY: build
 build: install
 
-install: $(GLIDE)
+{{- if .Docker}}
+#------------------------------------------------
+#
+#	docker support
+#
+#------------------------------------------------
 
+GOMAKE_DOCKER:=gopkg.in/go-make/docker.v0
+-include $(GOPATH)/src/$(GOMAKE_DOCKER)/Makefile
+$(GOPATH)/src/$(GOMAKE_DOCKER)/%:
+	go get $(GOMAKE_DOCKER)/...
+{{- end}}

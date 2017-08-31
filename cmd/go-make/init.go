@@ -31,9 +31,11 @@ var fileTemplates = map[string]*fileDetails{
 type templateContext struct {
 	GoPath    string
 	GoPathRel string
+	Docker    bool
+	Dep       bool
 }
 
-func getTemplateContext() templateContext {
+func getTemplateContext(c *cli.Context) templateContext {
 	ctx := templateContext{}
 	ctx.GoPath = os.Getenv("GOPATH")
 
@@ -48,6 +50,8 @@ func getTemplateContext() templateContext {
 	}
 
 	ctx.GoPathRel = rel
+	ctx.Docker = c.Bool("docker")
+	ctx.Dep = c.Bool("dep")
 	return ctx
 }
 
@@ -84,7 +88,7 @@ func createFile(c *cli.Context, outfile string, f *fileDetails) {
 		die(err)
 	}
 
-	err = tpl.Execute(w, getTemplateContext())
+	err = tpl.Execute(w, getTemplateContext(c))
 	if err != nil {
 		die(err)
 	}
@@ -102,6 +106,14 @@ var commandInit = cli.Command{
 		cli.BoolFlag{
 			Name:  "force, f",
 			Usage: "overwrites existing files - use with care!",
+		},
+		cli.BoolFlag{
+			Name:  "docker, d",
+			Usage: "include support for docker containers",
+		},
+		cli.BoolFlag{
+			Name:  "dep",
+			Usage: "use 'dep' tool for vendoring",
 		},
 	},
 	Action: func(c *cli.Context) error {

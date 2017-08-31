@@ -1,5 +1,9 @@
 export GLIDE:=$(GOPATH)/bin/glide
-NO_VENDOR?=$(shell $(GLIDE) nv)
+
+ifndef NO_VENDOR
+NO_VENDOR=$(shell $(GLIDE) nv)
+install: $(GLIDE)
+endif
 
 #
 #  Glide v0.12 no longer creates git repo under the vendor directory, which
