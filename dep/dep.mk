@@ -1,5 +1,4 @@
 export DEP:=$(GOPATH)/bin/dep
-NO_VENDOR?=./...
 
 OS:=$(shell uname -s)
 ifeq ("$(OS)","Darwin")

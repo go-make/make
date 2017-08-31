@@ -1,10 +1,5 @@
 export GLIDE:=$(GOPATH)/bin/glide
 
-ifndef NO_VENDOR
-NO_VENDOR=$(shell $(GLIDE) nv)
-install: $(GLIDE)
-endif
-
 #
 #  Glide v0.12 no longer creates git repo under the vendor directory, which
 #  makes things slower IMHO. I also sometimes find it useful to edit files
