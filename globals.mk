@@ -35,7 +35,7 @@ $(GOPATH)/bin:
 	$(call PROMPT,mkdir $@)
 	mkdir -p $@
 
-PATH_GOPATHBIN:=$(subst ::,:,$(GOPATH)/bin:$(subst $(GOPATH)/bin,,$(PATH)))
+PATH_GOPATHBIN:=$(subst ::,:,$(GOPATH)/bin:$(subst :$(GOPATH)/bin,:,$(PATH)))
 
 # this allows you to run
 #
