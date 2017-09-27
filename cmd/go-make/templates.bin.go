@@ -86,12 +86,12 @@ func templatesEditorconfigTpl() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "templates/editorconfig.tpl", size: 155, mode: os.FileMode(420), modTime: time.Unix(1503691590, 0)}
+	info := bindataFileInfo{name: "templates/editorconfig.tpl", size: 155, mode: os.FileMode(420), modTime: time.Unix(1506539637, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
 
-var _templatesGitignoreTpl = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x44\x8a\x41\x0a\x85\x30\x0c\x44\xf7\xbd\xc5\xdf\xfe\x45\x3c\x93\xb4\x43\xad\x68\x06\x9a\x18\xf4\xf6\x82\x28\xdd\xcd\xbc\xf7\x24\x2c\xb3\x60\xfa\xa7\xdf\x37\x71\x3a\xd4\x1a\xd5\x64\x35\xea\x10\x06\xf7\xa6\xf5\xc5\x01\x2d\xec\x29\x33\xd0\xe7\x0a\x59\x7c\xdf\xc6\x7b\x92\xca\x4c\x0d\x5c\xc2\xc3\xd3\x1d\x00\x00\xff\xff\x76\x39\x33\xe4\x6a\x00\x00\x00")
+var _templatesGitignoreTpl = []byte("\x1f\x8b\x08\x00\x00\x00\x00\x00\x00\xff\x44\x8a\x4d\x0a\x02\x31\x0c\x85\xf7\xb9\x85\xdb\x01\xe3\x25\xbc\xc1\x1c\x60\x90\xf6\x51\x2b\x9a\x07\x4d\x0c\x7a\x7b\x41\x1d\xba\x7a\x3f\xdf\xa7\xe9\x85\x15\xa7\x45\x0e\x7b\xc5\x2b\x60\xde\x69\xae\x37\xa7\x4d\xe0\x88\xe8\xd6\xfe\x77\xc2\x2a\x87\x6c\xbf\x3c\x2e\x52\x98\x18\x97\x06\xbd\xc6\xe3\x3e\xd7\x57\x6e\x2c\xb4\xc4\x5b\xf9\x0c\xd1\xf3\xba\xad\xc1\x01\xf9\x04\x00\x00\xff\xff\xa4\x79\xe9\xf1\x7e\x00\x00\x00")
 
 func templatesGitignoreTplBytes() ([]byte, error) {
 	return bindataRead(
@@ -106,7 +106,7 @@ func templatesGitignoreTpl() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "templates/gitignore.tpl", size: 106, mode: os.FileMode(420), modTime: time.Unix(1503691590, 0)}
+	info := bindataFileInfo{name: "templates/gitignore.tpl", size: 126, mode: os.FileMode(420), modTime: time.Unix(1506541684, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -126,7 +126,7 @@ func templatesMakefileTpl() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "templates/makefile.tpl", size: 1482, mode: os.FileMode(420), modTime: time.Unix(1504217292, 0)}
+	info := bindataFileInfo{name: "templates/makefile.tpl", size: 1482, mode: os.FileMode(420), modTime: time.Unix(1506539637, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }
@@ -146,7 +146,7 @@ func templatesVscodeSettingsTpl() (*asset, error) {
 		return nil, err
 	}
 
-	info := bindataFileInfo{name: "templates/vscode-settings.tpl", size: 135, mode: os.FileMode(420), modTime: time.Unix(1503699926, 0)}
+	info := bindataFileInfo{name: "templates/vscode-settings.tpl", size: 135, mode: os.FileMode(420), modTime: time.Unix(1506539637, 0)}
 	a := &asset{bytes: bytes, info: info}
 	return a, nil
 }

@@ -17,6 +17,9 @@ info:
 $(GRPC_PYTHON_TOOLS):
 	$(PIP) install grpcio-tools
 
+clean-tools::
+	$(PIP) uninstall grpcio-tools
+
 %_pb2.py: %.proto
 	$(call PROMPT,Generating $@)
 	T=$$(mktemp -d) bash -c ' \

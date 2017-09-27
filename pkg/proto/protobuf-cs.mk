@@ -12,6 +12,9 @@ $(GRPC_CSHARP_PLUGIN): $(GRPC_CSHARP_TOOLS)
 	unzip -p $< $(GRPC_CSHARP_PLUGIN_ZIPBIN) > $@
 	chmod +x $@
 
+clean-tools::
+	rm -f $(GRPC_CSHARP_PLUGIN)
+
 $(GRPC_CSHARP_TOOLS): $(PROTOC)
 	curl -sL https://www.nuget.org/api/v2/package/Grpc.Tools/ > $@
 

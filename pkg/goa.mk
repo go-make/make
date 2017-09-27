@@ -4,6 +4,9 @@ $(GOAGEN):
 	$(call PROMPT,Installing $@)
 	$(GO) get -u github.com/goadesign/goa/...
 
+clean-tools::
+	rm -f $(GOAGEN)
+
 #------------------------------------------------
 #
 #	generate

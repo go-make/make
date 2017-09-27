@@ -9,6 +9,9 @@ $(TEMPLE):
 	$(call PROMPT,Installing $@)
 	$(GO) get github.com/go-humble/temple
 
+clean-tools::
+	rm -f $(GOPHERJS) $(TEMPLE)
+
 #
 # Some generic JS tools below, not specifically gopherjs but useful in that context
 #

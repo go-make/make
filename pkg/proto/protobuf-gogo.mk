@@ -11,3 +11,5 @@ $(PROTOC_GEN_GOFAST):
 	$(call PROMPT,Installing $@)
 	$(GO) get github.com/gogo/protobuf/protoc-gen-gofast
 
+clean-tools::
+	rm -f $(PROTOC_GEN_GOFAST)

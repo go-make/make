@@ -63,3 +63,6 @@ clean::
 
 .PHONY: clobber
 clobber:: clean
+
+.PHONY: clean-tools
+clean-tools::

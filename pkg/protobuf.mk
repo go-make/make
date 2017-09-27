@@ -42,6 +42,9 @@ $(PROTOC_GEN_GO):
 	$(call PROMPT,Installing $@)
 	$(GO) get github.com/golang/protobuf/protoc-gen-go
 
+clean-tools::
+	rm -f $(PROTOC) $(PROTOC_GEN_GO)
+
 # you might want to override this if you use gogo
 PROTOC_GO_OUT?=--go_out=$(PROTOC_PARAMS):$(GOPATH)/src
 
