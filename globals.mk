@@ -7,7 +7,7 @@ INDENT_2:="$(INDENT_1)$(INDENT_1)"
 INDENT:="$(or $(INDENT_$(MAKELEVEL)),"... $(INDENT_2)")"
 
 # go1.9 can just use "./..." - although gometalinter still includes the vendor
-NO_VENDOR?=$(shell go list ./... | grep -v /vendor/)
+NO_VENDOR?=$(shell GOPATH=$(GOPATH) go list ./... | grep -v /vendor/)
 
 #
 # From any make rule, you can use this to let you know what's
