@@ -2,10 +2,13 @@ export DEP:=$(GOPATH)/bin/dep
 
 $(DEP): | $(GOPATH)/bin
 	$(call PROMPT,Installing $@)
-	go get -u github.com/golang/dep/cmd/dep
+	$(GO) get github.com/golang/dep/cmd/dep
 
 clean-tools::
 	rm -f $(DEP)
+
+update-tools: | $(GOPATH)/bin
+	$(GO) get -u github.com/golang/dep/cmd/dep
 
 vendor Gopkg.lock: $(DEP) Gopkg.toml
 	$(call PROMPT,$@)
@@ -18,5 +21,5 @@ dep-update: $(DEP) Gopkg.toml
 	$(DEP) ensure -update
 
 Gopkg.toml: | $(DEP)
-	$(DEP) init -no-examples
+	[ -f $@ ] || $(DEP) init -no-examples
 
