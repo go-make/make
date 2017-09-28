@@ -2,7 +2,7 @@ DIR_GOMAKE:=$(dir $(lastword $(MAKEFILE_LIST)))
 
 include $(DIR_GOMAKE)/globals.mk
 
-GOMAKE_VENDOR?=glide
+GOMAKE_VENDOR?=dep
 -include $(DIR_GOMAKE)/dep/$(GOMAKE_VENDOR).mk
 
 define INCLUDE
