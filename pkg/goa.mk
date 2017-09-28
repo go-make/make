@@ -2,10 +2,13 @@ export GOAGEN:=$(GOPATH)/bin/goagen
 
 $(GOAGEN):
 	$(call PROMPT,Installing $@)
-	$(GO) get -u github.com/goadesign/goa/...
+	$(GO) get github.com/goadesign/goa/...
 
 clean-tools::
 	rm -f $(GOAGEN)
+
+update-tools::
+	$(GO) get -u github.com/goadesign/goa/...
 
 #------------------------------------------------
 #

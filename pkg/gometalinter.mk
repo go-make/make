@@ -9,6 +9,10 @@ $(GOMETALINTER): | $(GOPATH)
 clean-tools::
 	rm -f $(GOMETALINTER)
 
+update-tools::
+	$(GO) get -u github.com/alecthomas/gometalinter
+	$(GOMETALINTER) --install
+
 GOMETALINTER_LINELENGTH?=100
 GOMETALINTER_DEADLINE?=30s
 GOMETALINTER_CYCLO?=15

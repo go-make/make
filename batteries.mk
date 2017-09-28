@@ -56,6 +56,7 @@ $(DIR_OUT):
 	$(call PROMPT,Creating output directory)
 	mkdir -p $@
 
+# this is defined as a double-colon rule so that the calling makefile can clean whatever it needs to as well
 .PHONY: clean
 clean::
 	rm -f $(DIR_OUT)/coverage.html $(DIR_OUT)/coverage.json
@@ -64,5 +65,11 @@ clean::
 .PHONY: clobber
 clobber:: clean
 
+# each makelet adds to this to clean themselves up
+# it can be useful if you update your go version and want to rebuild the same set of tools you had before
 .PHONY: clean-tools
 clean-tools::
+
+# each makelet adds to this one too.  can you guess what it does?
+.PHONY: update-tools
+update-tools::

@@ -6,6 +6,9 @@ $(CMD_LINKFLAGS): | $(GOPATH)
 clean-tools::
 	rm -f $(CMD_LINKFLAGS)
 
+update-tools::
+	$(GO) get -u github.com/gravitational/version/cmd/linkflags
+
 define VERSION_LDFLAGS
 $(shell $(CMD_LINKFLAGS) -pkg=$(GOPATH)/src/$(1))
 endef

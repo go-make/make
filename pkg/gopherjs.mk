@@ -12,6 +12,10 @@ $(TEMPLE):
 clean-tools::
 	rm -f $(GOPHERJS) $(TEMPLE)
 
+update-tools::
+	$(GO) get -u github.com/gopherjs/gopherjs
+	$(GO) get -u github.com/go-humble/temple
+
 #
 # Some generic JS tools below, not specifically gopherjs but useful in that context
 #

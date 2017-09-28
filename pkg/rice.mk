@@ -11,3 +11,4 @@ $(RICE): | $(GOPATH)
 
 clean-tools::
 	rm -f $(RICE)
+

@@ -6,4 +6,10 @@ goconvey: $(GOCONVEY)
 
 $(GOCONVEY):
 	$(call PROMPT,Installing $@)
+	$(GO) get github.com/smartystreets/goconvey
+
+clean-tools::
+	rm -f $(GOCONVEY)
+
+update-tools::
 	$(GO) get -u github.com/smartystreets/goconvey
