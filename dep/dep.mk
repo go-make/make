@@ -7,7 +7,7 @@ $(DEP): | $(GOPATH)/bin
 clean-tools::
 	rm -f $(DEP)
 
-update-tools: | $(GOPATH)/bin
+update-tools:: | $(GOPATH)/bin
 	$(GO) get -u github.com/golang/dep/cmd/dep
 
 vendor Gopkg.lock: $(DEP) Gopkg.toml
