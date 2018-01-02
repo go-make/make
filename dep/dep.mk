@@ -18,6 +18,7 @@ vendor Gopkg.lock: $(DEP) Gopkg.toml
 .PHONY: dep-update
 dep-update: $(DEP) Gopkg.toml
 	$(call PROMPT,$@)
+	$(DEP) ensure
 	$(DEP) ensure -update
 
 Gopkg.toml: | $(DEP)
