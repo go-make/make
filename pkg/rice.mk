@@ -6,8 +6,11 @@ export RICE:=$(GOPATH)/bin/rice
 #
 $(RICE): | $(GOPATH)
 	$(call PROMPT,Installing $@)
-	git clone -b appendbox https://github.com/boyvinall/go.rice.git $(GOPATH)/src/github.com/GeertJohan/go.rice
+	[ -d $(GOPATH)/src/github.com/GeertJohan/go.rice ] || git clone -b appendbox https://github.com/boyvinall/go.rice.git $(GOPATH)/src/github.com/GeertJohan/go.rice
+	cd $(GOPATH)/src/github.com/GeertJohan/go.rice/rice ; go get .
 	$(GO) install github.com/GeertJohan/go.rice/...
+
+tools:: $(RICE)
 
 clean-tools::
 	rm -f $(RICE)

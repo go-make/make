@@ -65,6 +65,11 @@ clean::
 .PHONY: clobber
 clobber:: clean
 
+# each makelet adds to this to install a full set of tools
+# it should not be necessary to run this as required tools should be automatically installed
+.PHONY: tools
+tools::
+
 # each makelet adds to this to clean themselves up
 # it can be useful if you update your go version and want to rebuild the same set of tools you had before
 .PHONY: clean-tools

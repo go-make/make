@@ -9,6 +9,8 @@ $(GOCOV_HTML): | $(GOPATH)
 	$(call PROMPT,Installing $@)
 	$(GO) get gopkg.in/matm/v1/gocov-html
 
+tools:: $(GOCOV) $(GOCOV_HTML)
+
 clean-tools::
 	rm -f $(GOCOV) $(GOCOV_HTML)
 

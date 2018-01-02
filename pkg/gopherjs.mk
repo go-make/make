@@ -9,6 +9,8 @@ $(TEMPLE):
 	$(call PROMPT,Installing $@)
 	$(GO) get github.com/go-humble/temple
 
+tools:: $(GOPHERJS) $(TEMPLE)
+
 clean-tools::
 	rm -f $(GOPHERJS) $(TEMPLE)
 

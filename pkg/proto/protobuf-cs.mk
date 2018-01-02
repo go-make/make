@@ -12,6 +12,8 @@ $(GRPC_CSHARP_PLUGIN): $(GRPC_CSHARP_TOOLS)
 	unzip -p $< $(GRPC_CSHARP_PLUGIN_ZIPBIN) > $@
 	chmod +x $@
 
+tools:: $(GRPC_CSHARP_PLUGIN)
+
 clean-tools::
 	rm -f $(GRPC_CSHARP_PLUGIN)
 

@@ -4,6 +4,8 @@ $(GO_BINDATA): | $(GOPATH)
 	$(call PROMPT,Installing $@)
 	$(GO) get github.com/jteeuwen/go-bindata/...
 
+tools:: $(GO_BINDATA)
+
 clean-tools::
 	rm -f $(GO_BINDATA)
 

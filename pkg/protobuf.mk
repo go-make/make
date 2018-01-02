@@ -42,6 +42,8 @@ $(PROTOC_GEN_GO):
 	$(call PROMPT,Installing $@)
 	$(GO) get github.com/golang/protobuf/protoc-gen-go
 
+tools:: $(PROTOC) $(PROTOC_GEN_GO)
+
 clean-tools::
 	rm -f $(PROTOC) $(PROTOC_GEN_GO)
 

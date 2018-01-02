@@ -8,6 +8,8 @@ $(GOCONVEY):
 	$(call PROMPT,Installing $@)
 	$(GO) get github.com/smartystreets/goconvey
 
+tools:: $(GOCONVEY)
+
 clean-tools::
 	rm -f $(GOCONVEY)
 

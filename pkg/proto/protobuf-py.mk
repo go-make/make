@@ -17,6 +17,8 @@ info:
 $(GRPC_PYTHON_TOOLS):
 	$(PIP) install grpcio-tools
 
+tools:: $(GRPC_PYTHON_TOOLS)
+
 clean-tools::
 	$(PIP) uninstall grpcio-tools
 

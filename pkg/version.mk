@@ -3,6 +3,8 @@ $(CMD_LINKFLAGS): | $(GOPATH)
 	$(call PROMPT,Installing $@)
 	$(GO) get github.com/gravitational/version/cmd/linkflags
 
+tools:: $(CMD_LINKFLAGS)
+
 clean-tools::
 	rm -f $(CMD_LINKFLAGS)
 
