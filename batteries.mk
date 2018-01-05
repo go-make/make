@@ -6,9 +6,9 @@ DIR_OUT?=./out
 include $(DIR_GOMAKE)/tools.mk
 
 .PHONY: install
-install:
+install::
 	$(call PROMPT,$@)
-	$(GO) install $(NO_VENDOR)
+	$(GO) install $(INSTALL_FLAGS) $(NO_VENDOR)
 
 .PHONY: lint
 lint: $(GOMETALINTER)
