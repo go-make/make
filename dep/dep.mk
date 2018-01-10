@@ -4,6 +4,8 @@ $(DEP): | $(GOPATH)/bin
 	$(call PROMPT,Installing $@)
 	$(GO) get github.com/golang/dep/cmd/dep
 
+tools:: $(DEP)
+
 clean-tools::
 	rm -f $(DEP)
 
