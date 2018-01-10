@@ -9,4 +9,8 @@ RUN \
     chmod +x /usr/local/bin/docker && \
     pip install docker-compose
 
-RUN make -f /go/src/gopkg.in/make.v4/batteries.mk tools
+RUN \
+    make -f /go/src/gopkg.in/make.v4/batteries.mk tools && \
+    make -f /go/src/gopkg.in/make.v4/pkg/proto/protobuf-cs.mk tools && \
+    make -f /go/src/gopkg.in/make.v4/pkg/proto/protobuf-gogo.mk tools && \
+    make -f /go/src/gopkg.in/make.v4/pkg/proto/protobuf-py.mk tools

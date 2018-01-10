@@ -9,7 +9,7 @@ export PROTOC_GEN_GOFAST:=$(GOPATH)/bin/protoc-gen-gofast
 
 $(PROTOC_GEN_GOFAST):
 	$(call PROMPT,Installing $@)
-	$(GO) get github.com/gogo/protobuf/protoc-gen-gofast
+	go get github.com/gogo/protobuf/protoc-gen-gofast
 
 tools:: $(PROTOC_GEN_GOFAST)
 
