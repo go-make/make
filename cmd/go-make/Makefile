@@ -3,7 +3,7 @@ export GOPATH:=$(realpath $(shell pwd)/../../../../..)
 .PHONY: all
 all: install coverage lint-full
 
-install: templates.bin.go vendor
+install:: templates.bin.go vendor
 
 # templates.bin.go is generated, no point warning about that
 GOMETALINTER_OPT_EXTRA:=--exclude=^templates.bin.go:

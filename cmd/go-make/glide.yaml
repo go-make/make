@@ -1,6 +1,0 @@
-package: gopkg.in/make.v4/cmd/go-make
-import:
-- package: github.com/urfave/cli
-  version: ^1.19.1
-- package: github.com/jteeuwen/go-bindata
-  version: ^3.0.7

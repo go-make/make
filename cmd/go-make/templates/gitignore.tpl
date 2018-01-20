@@ -1,9 +1,15 @@
-.vscode/*
-!.vscode/extensions.json
-!.vscode/settings.json
+.*
+!.gitignore
+!.gitlab-ci.yml
+!.editorconfig
+!.vscode
+!.go-make
+
 vendor
 _vendor-*
-coverage.html
-coverage.json
-goconvey.out
-.DS_Store
+
+out
+
+# executables produced when you run/debug in vscode
+debug
+debug.test
