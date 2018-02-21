@@ -1,4 +1,4 @@
-FROM golang
+FROM golang:1.10
 
 ADD . /go/src/gopkg.in/make.v4
 RUN \
@@ -7,7 +7,7 @@ RUN \
     rm -rf /var/lib/apt/lists/* && \
     curl -sL https://download.docker.com/linux/static/stable/x86_64/docker-17.12.0-ce.tgz | tar -xzf - -O docker/docker > /usr/local/bin/docker && \
     chmod +x /usr/local/bin/docker && \
-    pip install docker-compose
+    pip install -r /go/src/gopkg.in/make.v4/requirements.txt
 
 RUN \
     make -f /go/src/gopkg.in/make.v4/batteries.mk tools && \
