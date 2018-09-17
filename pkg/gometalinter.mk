@@ -1,10 +1,10 @@
 export GOMETALINTER:=$(GOPATH)/bin/gometalinter
+export _SELF:=$(lastword $(MAKEFILE_LIST))
 
 # grab the gometalinter binary and install the actual linters
 $(GOMETALINTER): | $(GOPATH)
 	$(call PROMPT,Installing $@)
-	$(GO) get github.com/alecthomas/gometalinter
-	$(GOMETALINTER) --install
+	$(dir $(_SELF))/install-gometalinter.sh -b $(GOPATH)/bin
 
 tools:: $(GOMETALINTER)
 
@@ -12,8 +12,7 @@ clean-tools::
 	rm -f $(GOMETALINTER)
 
 update-tools::
-	$(GO) get -u github.com/alecthomas/gometalinter
-	$(GOMETALINTER) --install
+	$(dir $(_SELF))/install-gometalinter.sh -b $(GOPATH)/bin
 
 GOMETALINTER_LINELENGTH?=100
 GOMETALINTER_DEADLINE?=30s
