@@ -49,8 +49,14 @@ build: install
 #
 #------------------------------------------------
 
--include .go-make/docker/Makefile
+-include .go-make/docker/docker.mk
 .go-make/docker/%:
 	git clone https://github.com/go-make/docker.git $(dir $@)
 	rm -rf $(dir $@)/.git
+
+DOCKER_REGISTRY:=
+DOCKER_ORG:=
+CONTAINER_NAME:=foo
+
+$(eval $(call DOCKER_BUILD,Dockerfile,$(DOCKER_REGISTRY),$(DOCKER_ORG),$(CONTAINER_NAME)))
 {{- end}}

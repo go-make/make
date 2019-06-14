@@ -13,9 +13,14 @@ type fileDetails struct {
 	templatefile string
 }
 
+//go:generate go-bindata -o templates.bin.go templates/
+
 var fileTemplates = map[string]*fileDetails{
 	".editorconfig": {
 		templatefile: "templates/editorconfig.tpl",
+	},
+	".golangci.yml": {
+		templatefile: "templates/golangci.yml.tpl",
 	},
 	".gitignore": {
 		templatefile: "templates/gitignore.tpl",

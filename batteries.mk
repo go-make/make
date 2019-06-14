@@ -11,19 +11,19 @@ install::
 	$(GO) install $(INSTALL_FLAGS) $(NO_VENDOR)
 
 .PHONY: lint
-lint: $(GOMETALINTER)
+lint: $(GOLANGCI_LINT)
 	$(call PROMPT,$@)
-	$(GOMETALINTER) $(GOMETALINTER_OPT) $(NO_VENDOR)
+	$(GOLANGCI_LINT) run
 
 .PHONY: lint-full
-lint-full: $(GOMETALINTER)
+lint-full: $(GOLANGCI_LINT)
 	$(call PROMPT,$@)
-	$(GOMETALINTER) --enable-all $(GOMETALINTER_OPT) $(NO_VENDOR)
+	$(GOLANGCI_LINT) run --enable-all
 
 .PHONY: lint-fast
-lint-fast: $(GOMETALINTER)
+lint-fast: $(GOLANGCI_LINT)
 	$(call PROMPT,$@)
-	$(GOMETALINTER) --fast $(GOMETALINTER_OPT) $(NO_VENDOR)
+	$(GOLANGCI_LINT) run --fast
 
 # wish this wasn't necessary
 lint lint-fast lint-full: install
@@ -32,24 +32,24 @@ lint lint-fast lint-full: install
 test: test-full
 test-full:
 	$(call PROMPT,$@)
-	GOOS=$(GOHOSTOS) GOARCH=$(GOHOSTARCH) $(GO) test -v -race $(NO_VENDOR)
+	GOOS=$(GOHOSTOS) GOARCH=$(GOHOSTARCH) $(GO) test -v -race $(NO_VENDOR) $(TESTFLAGS)
 
 .PHONY: test-short
 test-short:
 	$(call PROMPT,$@)
-	GOOS=$(GOHOSTOS) GOARCH=$(GOHOSTARCH) $(GO) test -v -short $(NO_VENDOR)
+	GOOS=$(GOHOSTOS) GOARCH=$(GOHOSTARCH) $(GO) test -v -short $(NO_VENDOR) $(TESTFLAGS)
 
 .PHONY: coverage coverage-full
 coverage: coverage-full
 coverage-full: $(GOCOV) $(GOCOV_HTML) | $(DIR_OUT)
 	$(call PROMPT,$@)
-	GOOS=$(GOHOSTOS) GOARCH=$(GOHOSTARCH) $(GOCOV) test -v -race $(NO_VENDOR) > $(DIR_OUT)/coverage.json
+	GOOS=$(GOHOSTOS) GOARCH=$(GOHOSTARCH) $(GOCOV) test -v -race $(NO_VENDOR) $(TESTFLAGS) > $(DIR_OUT)/coverage.json
 	$(GOCOV_HTML) $(DIR_OUT)/coverage.json > $(DIR_OUT)/coverage.html
 
 .PHONY: coverage-short
 coverage-short: $(GOCOV) $(GOCOV_HTML) | $(DIR_OUT)
 	$(call PROMPT,$@)
-	GOOS=$(GOHOSTOS) GOARCH=$(GOHOSTARCH) $(GOCOV) test -v -short $(NO_VENDOR) > $(DIR_OUT)/coverage.json
+	GOOS=$(GOHOSTOS) GOARCH=$(GOHOSTARCH) $(GOCOV) test -v -short $(NO_VENDOR) $(TESTFLAGS) > $(DIR_OUT)/coverage.json
 	$(GOCOV_HTML) $(DIR_OUT)/coverage.json > $(DIR_OUT)/coverage.html
 
 $(DIR_OUT):
