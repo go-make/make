@@ -7,7 +7,7 @@ $(GOCOV): | $(GOPATH)
 
 $(GOCOV_HTML): | $(GOPATH)
 	$(call PROMPT,Installing $@)
-	$(GO) get gopkg.in/matm/v1/gocov-html
+	$(GO) get github.com/matm/gocov-html
 
 tools:: $(GOCOV) $(GOCOV_HTML)
 
@@ -16,4 +16,4 @@ clean-tools::
 
 update-tools::
 	$(GO) get -u github.com/axw/gocov/gocov
-	$(GO) get -u gopkg.in/matm/v1/gocov-html
+	$(GO) get -u github.com/matm/gocov-html
