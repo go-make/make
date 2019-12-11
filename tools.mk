@@ -2,6 +2,10 @@ DIR_GOMAKE:=$(dir $(lastword $(MAKEFILE_LIST)))
 
 include $(DIR_GOMAKE)/globals.mk
 
+ifneq ("$(GOPROXY)","")
+GOMAKE_VENDOR:=modules
+endif
+
 GOMAKE_VENDOR?=dep
 -include $(DIR_GOMAKE)/dep/$(GOMAKE_VENDOR).mk
 
