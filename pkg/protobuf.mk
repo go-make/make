@@ -57,6 +57,7 @@ PROTOC_GO_OUT?=--go_out=$(PROTOC_PARAMS):$(GOPATH)/src
 %.pb.go: %.proto $(PROTOC)
 	$(call PROMPT,Generating $@)
 	$(PROTOC) -I$(dir $<) -I$(GOPATH)/src $(PROTOC_FLAGS) $< $(PROTOC_GO_OUT)
+	sed -i 's,`json:"-"`,`json:"-" yaml:"-" sql:"-"`,g' $@
 
 # used by C# and python tools to strip gogo-protobuf markup from .proto files
 define STRIP_GOGO
