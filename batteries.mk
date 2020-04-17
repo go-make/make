@@ -45,12 +45,14 @@ coverage-full: $(GOCOV) $(GOCOV_HTML) | $(DIR_OUT)
 	$(call PROMPT,$@)
 	GOOS=$(GOHOSTOS) GOARCH=$(GOHOSTARCH) $(GOCOV) test -v -race $(NO_VENDOR) $(TESTFLAGS) > $(DIR_OUT)/coverage.json
 	$(GOCOV_HTML) $(DIR_OUT)/coverage.json > $(DIR_OUT)/coverage.html
+	$(GOCOV) report $(DIR_OUT)/coverage.json
 
 .PHONY: coverage-short
 coverage-short: $(GOCOV) $(GOCOV_HTML) | $(DIR_OUT)
 	$(call PROMPT,$@)
 	GOOS=$(GOHOSTOS) GOARCH=$(GOHOSTARCH) $(GOCOV) test -v -short $(NO_VENDOR) $(TESTFLAGS) > $(DIR_OUT)/coverage.json
 	$(GOCOV_HTML) $(DIR_OUT)/coverage.json > $(DIR_OUT)/coverage.html
+	$(GOCOV) report $(DIR_OUT)/coverage.json
 
 $(DIR_OUT):
 	$(call PROMPT,Creating output directory)
