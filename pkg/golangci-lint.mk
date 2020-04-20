@@ -1,6 +1,6 @@
 export GOLANGCI_LINT:=$(GOPATH)/bin/golangci-lint
 export _SELF:=$(lastword $(MAKEFILE_LIST))
-GOLANGCI_LINT_VERSION:=v1.19.0
+GOLANGCI_LINT_VERSION:=v1.23.8
 
 # grab the gometalinter binary and install the actual linters
 $(GOLANGCI_LINT): | $(GOPATH)
