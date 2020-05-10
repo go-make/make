@@ -4,9 +4,7 @@ $(GOPATH)/src/github.com/davecheney/godoc2md: $(DEP)
 	$(call PROMPT,Cloning $@)
 	mkdir -p $(GOPATH)/src/github.com/davecheney && \
 		cd $(GOPATH)/src/github.com/davecheney && \
-		git clone https://github.com/boyvinall/godoc2md && \
-		cd godoc2md && \
-		dep ensure -v
+		git clone https://github.com/boyvinall/godoc2md
 
 $(GODOC2MD): | $(GOPATH)/src/github.com/davecheney/godoc2md
 	$(call PROMPT,Installing $@)
