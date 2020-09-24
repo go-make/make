@@ -27,7 +27,7 @@ These targets are supported by [`batteries.mk`](batteries.mk):
 |----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `install`                        | Does a `go install`                                                                                                                                                                                          |
 | `vendor`                         | Uses glide to install versioned packages to your `vendor` directory                                                                                                                                          |
-| `lint-fast`, `lint`, `lint-full` | Uses gometalinter to scan for possible nasties.<br>The different targets just enable different options, either `--fast`,<br>default, or `--enable-all`                                                       |
+| `lint-fast`, `lint`, `lint-full` | Uses golinter-ci to scan for possible nasties.<br>The different targets just enable different options, either `--fast`,<br>default, or `--enable-all`                                                       |
 | `test-short`, `test`             | invokes `go test` on all local packages (it skips the vendored ones).<br>`test-short` will pass the `--short` option in case you have some tests<br>that take a long time to run (e.g. testing timeouts etc) |
 | `coverage-short`, `coverage`     | uses `gocov` to invoke `go test` on all your local packages, generating code <br> coverage info. Also builds an HTML file that shows which source lines <br> are not covered by your tests                   |
 | `clean::`                        | it's a [double-colon](https://www.gnu.org/software/make/manual/html_node/Double_002dColon.html) make rule so that it can be extended by your own makefile                                                    |
@@ -53,7 +53,6 @@ something to install the tool and a make variable to refer to the binary.
 Others are more fully featured.  Brief info follows below.
 
 - [glide](#glide)
-- [gometalinter](#gometalinter)
 - [goconvey](#goconvey)
 - [gocov](#gocov)
 - [rice](#rice)
@@ -75,24 +74,6 @@ Defined variables:
 |------------------------|---------------------------------------------------------------------------------|
 | `$(GLIDE)`             | Refers to the `glide` executable. You can depend on this to get glide installed |
 | `$(GLIDE_OPT_INSTALL)` | options to be passed to `glide install` (used to install package dependencies)  |
-
-## [gometalinter](gometalinter.mk)
-
-Superb wrapper to simplify running a whole bunch of linters on your code.
-See [gometalinter](https://github.com/alecthomas/gometalinter)
-
-This makelet defines a few settings which you can override before you include
-gomake.
-
-Defined variables:
-
-| Variable                     | Description                                                                                               |
-|------------------------------|-----------------------------------------------------------------------------------------------------------|
-| `$(GOMETALINTER)`            | Refers to the `gometalinter` executable. You can depend on this to get gometalinter installed             |
-| `$(GOMETALINTER_OPT)`        | Sets up some default options for `gometalinter` (including the settings just below)                       |
-| `$(GOMETALINTER_LINELENGTH)` | Sets the text line length used during linting                                                             |
-| `$(GOMETALINTER_DEADLINE)`   | Sets the a linting time deadline (some linters can take quite a while...)                                 |
-| `$(GOMETALINTER_CYCLO)`      | Sets the [cyclomatic complexity](https://en.wikipedia.org/wiki/Cyclomatic_complexity) used during linting |
 
 ## [goconvey](goconvey.mk)
 
