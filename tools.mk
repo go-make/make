@@ -6,7 +6,7 @@ ifneq ("$(GOPROXY)","")
 GOMAKE_VENDOR:=modules
 endif
 
-GOMAKE_VENDOR?=dep
+GOMAKE_VENDOR?=modules
 -include $(DIR_GOMAKE)/dep/$(GOMAKE_VENDOR).mk
 
 define INCLUDE

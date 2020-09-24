@@ -37,7 +37,6 @@ type templateContext struct {
 	GoPath    string
 	GoPathRel string
 	Docker    bool
-	Dep       bool
 }
 
 func getTemplateContext(c *cli.Context) templateContext {
@@ -56,7 +55,6 @@ func getTemplateContext(c *cli.Context) templateContext {
 
 	ctx.GoPathRel = rel
 	ctx.Docker = c.Bool("docker")
-	ctx.Dep = c.Bool("dep")
 	return ctx
 }
 
@@ -115,10 +113,6 @@ var commandInit = cli.Command{
 		cli.BoolFlag{
 			Name:  "docker, d",
 			Usage: "include support for docker containers",
-		},
-		cli.BoolFlag{
-			Name:  "dep",
-			Usage: "use 'dep' tool for vendoring",
 		},
 	},
 	Action: func(c *cli.Context) error {
