@@ -12,7 +12,7 @@ update-tools::
 	$(GO) get -u github.com/gravitational/version/cmd/linkflags
 
 define VERSION_LDFLAGS
-$(shell $(CMD_LINKFLAGS) -pkg=$(GOPATH)/src/$(1))
+$(shell $(CMD_LINKFLAGS) -pkg=$(if $(1),$(1),$(PWD)))
 endef
 
 define VERSION_LDFLAGS_VENDOR
