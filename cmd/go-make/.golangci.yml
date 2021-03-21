@@ -1,0 +1,11 @@
+linters:
+  disable:
+    - wsl
+    - godot
+    - nlreturn
+
+issues:
+  exclude-rules:
+    - linters:
+        - gochecknoglobals
+      source: cli.Command

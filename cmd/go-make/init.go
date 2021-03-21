@@ -15,6 +15,7 @@ type fileDetails struct {
 
 //go:generate go-bindata -o templates.bin.go templates/
 
+// nolint:checknoglobals // can't have const maps
 var fileTemplates = map[string]*fileDetails{
 	".editorconfig": {
 		templatefile: "templates/editorconfig.tpl",

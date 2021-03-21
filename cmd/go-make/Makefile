@@ -1,15 +1,13 @@
-export GOPATH:=$(realpath $(shell pwd)/../../../../..)
+export GOPATH:=$(shell go env GOPATH)
 
 .PHONY: all
 all: install coverage lint-full
 
-install:: templates.bin.go vendor
+install:: templates.bin.go
 
 # templates.bin.go is generated, no point warning about that
-GOMAKE:=gopkg.in/make.v4
+GOMAKE:=github.com/go-make/make
 -include $(GOPATH)/src/$(GOMAKE)/batteries.mk
-$(GOPATH)/src/$(GOMAKE)/%:
-	go get $(GOMAKE)/...
 
 templates.bin.go: $(GO_BINDATA) $(wildcard templates/*)
 	$(call PROMPT,Generating $@)
