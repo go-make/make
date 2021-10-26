@@ -47,6 +47,10 @@ coverage-full: $(GOCOV) $(GOCOV_HTML) | $(DIR_OUT)
 	$(GOCOV_HTML) $(DIR_OUT)/coverage.json > $(DIR_OUT)/coverage.html
 	$(GOCOV) report $(DIR_OUT)/coverage.json
 
+.PHONY: coverage-threshold
+coverage-threshold: coverage-full
+
+
 .PHONY: coverage-short
 coverage-short: $(GOCOV) $(GOCOV_HTML) | $(DIR_OUT)
 	$(call PROMPT,$@)
