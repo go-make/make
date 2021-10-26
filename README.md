@@ -52,16 +52,19 @@ Most of the tool support is quite simple, in many cases not much more than
 something to install the tool and a make variable to refer to the binary.
 Others are more fully featured.  Brief info follows below.
 
-- [glide](#glide)
-- [goconvey](#goconvey)
-- [gocov](#gocov)
-- [rice](#rice)
-- [go-bindata](#go-bindata)
-- [goa](#goa)
-- [gopherjs](#gopherjs)
-- [gravitational/version](#gravitationalversion)
-- [docker](#docker)
-- [protobuf/grpc](#protobufgrpc)
+- [Scaffolding generation](#scaffolding-generation)
+- [Features](#features)
+	- [Make targets](#make-targets)
+	- [Macros etc](#macros-etc)
+- [Supported Tools](#supported-tools)
+	- [glide](#glide)
+	- [goconvey](#goconvey)
+	- [gocov](#gocov)
+	- [goa](#goa)
+	- [gopherjs](#gopherjs)
+	- [gravitational/version](#gravitationalversion)
+	- [docker](#docker)
+	- [protobuf/grpc](#protobufgrpc)
 
 ## [glide](glide.mk)
 
@@ -94,25 +97,6 @@ get browser notifications when a test fails.
 by simplifying the process of getting code coverage on a per-package basis.
 The [gocov-html](https://github.com/matm/gocov-html) generates a nice HTML file
 where you can easily see which source lines are not tested.
-
-## [rice](rice.mk)
-
-Useful to embed directories of static files into binaries.
-See [go.rice](https://github.com/GeertJohan/go.rice)
-
-| Variable  | Description                                                                 |
-|-----------|-----------------------------------------------------------------------------|
-| `$(RICE)` | Refers to the `rice` executable. You can depend on this to get it installed |
-
-## [go-bindata](bindata.mk)
-
-Sometimes, or for gopherjs, you may want to include assets as part of the compilation
-process instead of using `rice` (above). In those cases, [go-bindata](https://github.com/jteeuwen/go-bindata)
-can be very useful.
-
-| Variable        | Description                                                                       |
-|-----------------|-----------------------------------------------------------------------------------|
-| `$(GO_BINDATA)` | Refers to the `go-bindata` executable. You can depend on this to get it installed |
 
 ## [goa](goa.mk)
 
