@@ -5,11 +5,6 @@ DIR_OUT?=./out
 
 include $(DIR_GOMAKE)/tools.mk
 
-.PHONY: install
-install::
-	$(call PROMPT,$@)
-	$(GO) install $(INSTALL_FLAGS) $(NO_VENDOR)
-
 .PHONY: lint
 lint: $(GOLANGCI_LINT)
 	$(call PROMPT,$@)
@@ -24,9 +19,6 @@ lint-full: $(GOLANGCI_LINT)
 lint-fast: $(GOLANGCI_LINT)
 	$(call PROMPT,$@)
 	$(GOLANGCI_LINT) run --fast
-
-# wish this wasn't necessary
-lint lint-fast lint-full: install
 
 .PHONY: test test-full
 test: test-full
