@@ -25,9 +25,6 @@ lint-fast: $(GOLANGCI_LINT)
 	$(call PROMPT,$@)
 	$(GOLANGCI_LINT) run --fast
 
-# wish this wasn't necessary
-lint lint-fast lint-full: install
-
 .PHONY: test test-full
 test: test-full
 test-full:
