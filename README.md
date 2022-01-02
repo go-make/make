@@ -26,7 +26,7 @@ These targets are supported by [`batteries.mk`](batteries.mk):
 | Target(s)                        | Description                                                                                                                                                                                                  |
 |----------------------------------|--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|
 | `install`                        | Does a `go install`                                                                                                                                                                                          |
-| `vendor`                         | Uses glide to install versioned packages to your `vendor` directory                                                                                                                                          |
+| `vendor`                         | Uses `go mod vendor` to install versioned packages to your `vendor` directory                                                                                                                                          |
 | `lint-fast`, `lint`, `lint-full` | Uses golinter-ci to scan for possible nasties.<br>The different targets just enable different options, either `--fast`,<br>default, or `--enable-all`                                                       |
 | `test-short`, `test`             | invokes `go test` on all local packages (it skips the vendored ones).<br>`test-short` will pass the `--short` option in case you have some tests<br>that take a long time to run (e.g. testing timeouts etc) |
 | `coverage-short`, `coverage`     | uses `gocov` to invoke `go test` on all your local packages, generating code <br> coverage info. Also builds an HTML file that shows which source lines <br> are not covered by your tests                   |
@@ -57,7 +57,6 @@ Others are more fully featured.  Brief info follows below.
 	- [Make targets](#make-targets)
 	- [Macros etc](#macros-etc)
 - [Supported Tools](#supported-tools)
-	- [glide](#glide)
 	- [goconvey](#goconvey)
 	- [gocov](#gocov)
 	- [goa](#goa)
@@ -65,18 +64,6 @@ Others are more fully featured.  Brief info follows below.
 	- [gravitational/version](#gravitationalversion)
 	- [docker](#docker)
 	- [protobuf/grpc](#protobufgrpc)
-
-## [glide](glide.mk)
-
-There are a plethora of package managers / vendoring tools for go at the moment.
-I currently use [glide](https://github.com/Masterminds/glide).
-
-Defined variables:
-
-| Variable               | Description                                                                     |
-|------------------------|---------------------------------------------------------------------------------|
-| `$(GLIDE)`             | Refers to the `glide` executable. You can depend on this to get glide installed |
-| `$(GLIDE_OPT_INSTALL)` | options to be passed to `glide install` (used to install package dependencies)  |
 
 ## [goconvey](goconvey.mk)
 
